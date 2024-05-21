@@ -11,16 +11,18 @@ export default function Home() {
         <HodSmartLogo />
       </div>
       <div className="mt-4 flex grow flex-col gap-4 md:flex-row">
-        <div className="">
-           <h1 className={`${lusitana.className} font-bold text-2xl`}>
-            Welcome to HOD smart platform
-           </h1>
-           <p className="">
-           This site is designed to facilitate smooth error-proof way of capturing lesson allocations for your teachers by the HODs during departmental meetings.
-           </p>
-           <p className="">
-           We know that it takes time to share  lessons and capture the allocations, so we'd like to make it worth your while by offering you a smart platform to do it paperlessly.
-           </p>
+        <div className="flex flex-col justify-center gap-6 rounded-lg bg-gray-50 px-6 py-10 md:w-2/5 md:px-20">
+           <div className="p-3">
+            <h1 className={`${lusitana.className} font-bold text-2xl`}>
+              Welcome to HOD smart platform
+            </h1>
+            <p className="">
+            This site is designed to facilitate smooth error-proof way of capturing lesson allocations for your teachers by the HODs during departmental meetings.
+            </p>
+            <p className="">
+            We know that it takes time to share  lessons and capture the allocations, so we'd like to make it worth your while by offering you a smart platform to do it paperlessly.
+            </p>
+           </div>
            <Link
             href="/login"
             className="flex items-center gap-5 self-start rounded-lg bg-blue-500 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-blue-400 md:text-base max-w-44"
