@@ -10,7 +10,12 @@ export default function Home() {
       </div>
       <div className="mt-4 flex grow flex-col gap-4 md:flex-row">
         <div className="">
-
+           <h1 className={`${lusitana.className} font-bold text-2xl`}>
+            Welcome to HOD smart platform
+           </h1>
+           <p className="">
+           This site is designed to facilitate smooth error-proof way of capturing lesson allocations for HODs during teachers meetings.
+           </p>
         </div>
         <div className="flex items-center justify-center p-6 md:w-3/5 md:px-28 md:py-12">
             <Image
@@ -18,6 +23,14 @@ export default function Home() {
               width={1000}
               height={760}
               alt="Smart Hod image for the desktop"
+              className="hidden md:block rounded-lg"
+             />
+             <Image
+              src="/smart-teacher-mobile.jfif"
+              width={560}
+              height={620}
+              alt="Smart Hod image for the mobile"
+              className="block md:hidden rounded-lg"
              />
         </div>
 
