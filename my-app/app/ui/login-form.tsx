@@ -63,11 +63,13 @@ export default function LoginForm(){
                     <FormControl>
                         <Input placeholder="password" {...field} />
                     </FormControl> 
-                    <FormMessage />
+                <FormMessage />
             </FormItem>
            )}
             />
-           <Button type="submit">Submit</Button>
+          <div className="mt-5 flex items-center justify-end">
+             <Button type="submit">Submit</Button>
+          </div>
          </form>
        </Form>
     )
