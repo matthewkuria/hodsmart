@@ -1,4 +1,5 @@
 import HodSmartLogo from "../ui/HodSmartLogo";
+import LoginForm from "../ui/login-form";
 
 export default function LoginPage(){
     return(
@@ -10,7 +11,7 @@ export default function LoginPage(){
                     </div>
                 </div>
                 {/* Login Form here */}
-                
+                <LoginForm />
             </div>
 
         </main>
