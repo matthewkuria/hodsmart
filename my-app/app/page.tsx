@@ -16,6 +16,9 @@ export default function Home() {
            <p className="">
            This site is designed to facilitate smooth error-proof way of capturing lesson allocations for HODs during teachers meetings.
            </p>
+           <p className="">
+           We know that it takes time to share your allocate lessons and capture the allocations, so we'd like to make it worth your while by offering you a smart platform to do it paperlessly.
+           </p>
         </div>
         <div className="flex items-center justify-center p-6 md:w-3/5 md:px-28 md:py-12">
             <Image
