@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { useToast } from "@/components/ui/use-toast"
+import Link from "next/link";
 
 
 const formSchema = z.object({
@@ -73,7 +74,9 @@ export default function LoginForm(){
            )}
             />
           <div className="mt-5 flex items-center justify-end">
+             <Link href='/dashboard'>
              <Button type="submit">Submit</Button>
+             </Link>
           </div>
          </form>
        </Form>
