@@ -5,17 +5,85 @@ async function getData(): Promise<Payment[]> {
   // Fetch data from your API here.
   return [
     {
-      id: "728ed52f",
-      amount: 100,
-      status: "pending",
-      email: "m@example.com",
+      id: "728ed52f",     
+      tscNumber: 6060907,
+      fullName: "John Doe",
+      subjects: "math/phy"
     },
     {
-      id: "728ed52f",
-      amount: 300,
-      status: "processing",
-      email: "m@example.com",
+      id: "728ed52f",     
+      tscNumber: 6060306,
+      fullName: "Matthew Kuria",
+      subjects: "math/phy"
     },
+    {
+      id: "728ed52f",     
+      tscNumber: 6060907,
+      fullName: "John Doe",
+      subjects: "math/phy"
+    },
+    {
+      id: "728ed52f",     
+      tscNumber: 6060907,
+      fullName: "John Doe",
+      subjects: "math/phy"
+    },
+    {
+      id: "728ed52f",     
+      tscNumber: 6060907,
+      fullName: "John Doe",
+      subjects: "math/phy"
+    },
+    {
+      id: "728ed52f",     
+      tscNumber: 6060907,
+      fullName: "John Doe",
+      subjects: "math/phy"
+    },
+    {
+      id: "728ed52f",     
+      tscNumber: 6060907,
+      fullName: "John Doe",
+      subjects: "math/phy"
+    },
+    {
+      id: "728ed52f",     
+      tscNumber: 6060907,
+      fullName: "John Doe",
+      subjects: "math/phy"
+    },
+    {
+      id: "728ed52f",     
+      tscNumber: 6060907,
+      fullName: "John Doe",
+      subjects: "math/phy"
+    },
+    {
+      id: "728ed52f",     
+      tscNumber: 6060907,
+      fullName: "John Doe",
+      subjects: "math/phy"
+    },
+    {
+      id: "728ed52f",     
+      tscNumber: 6060907,
+      fullName: "John Doe",
+      subjects: "math/phy"
+    },
+    {
+      id: "728ed52f",     
+      tscNumber: 6060907,
+      fullName: "John Doe",
+      subjects: "math/phy"
+    },
+    {
+      id: "728ed52f",     
+      tscNumber: 6060907,
+      fullName: "John Doe",
+      subjects: "math/phy"
+    },
+
+   
     // ...
   ]
 }
