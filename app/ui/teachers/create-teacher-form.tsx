@@ -34,4 +34,28 @@ export function CreateTeacherForm(){
     // ✅ This will be type-safe and validated.
     console.log(values)
   }
+
+  return (
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <FormField
+          control={form.control}
+          name="tscNumber"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>TSC Number</FormLabel>
+              <FormControl>
+                <Input placeholder="TSC Number" {...field} />
+              </FormControl>
+              <FormDescription>
+                This is your public display name.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button type="submit">Save</Button>
+      </form>
+    </Form>
+  )
 }
