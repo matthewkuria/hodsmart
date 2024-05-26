@@ -1,6 +1,7 @@
 "use client"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import Link from "next/link"
 import {
   ColumnDef,
   flexRender,
@@ -73,6 +74,13 @@ export function DataTable<TData, TValue>({
           }
           className="max-w-sm"
         />
+        <Button>
+          <Link
+          href="/teacher/add-teacher"
+          >
+          Add Teacher
+          </Link>
+        </Button>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto">
