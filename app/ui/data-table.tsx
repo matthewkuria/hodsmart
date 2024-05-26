@@ -76,7 +76,7 @@ export function DataTable<TData, TValue>({
         />
         <Button>
           <Link
-          href="/teacher/add-teacher"
+          href="/dashboard/teachers/add-teacher"
           >
           Add Teacher
           </Link>
