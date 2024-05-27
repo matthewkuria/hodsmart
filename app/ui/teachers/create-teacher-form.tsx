@@ -17,6 +17,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { Label } from "@radix-ui/react-label";
 
 const formSchema = z.object({
     tscNumber:  z.string().min(2).max(50),
@@ -68,8 +69,28 @@ export function CreateTeacherForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={handleSubmit} className="space-y-8">
-        
+      <form onSubmit={handleSubmit} className="space-y-8 shadow-md">
+        <Label htmlFor="tscNumber">TSC Number:</Label>
+        <Input
+          type="text"
+          id="tscNumber"
+          value={tscNumber}
+          onChange={(e) => setTscNumber(e.target.value)}
+        />
+        <Label htmlFor="fullName">Name:</Label>
+        <Input
+          type="text"
+          id="fullName"
+          value={fullName}
+          onChange={(e) => setfullName(e.target.value)}
+        />
+        <Label htmlFor="subjects">Subjects</Label>
+        <Input
+          type="text"
+          id="subjects"
+          value={subjects}
+          onChange={(e) => setsubjects(e.target.value)}
+        />
         <Button type="submit">Save</Button>
       </form>
     </Form>
