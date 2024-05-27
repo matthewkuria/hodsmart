@@ -43,11 +43,24 @@ export function CreateTeacherForm(){
           name="tscNumber"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>TSC Number</FormLabel>
+              <FormLabel>TSC Number:</FormLabel>
               <FormControl>
                 <Input placeholder="TSC Number" {...field} />
               </FormControl>              
               <FormMessage />
+            </FormItem>            
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="fullName"
+          render={({ field }) => (
+            <FormItem>
+                <FormLabel>Teacher's Name:</FormLabel>
+                <FormControl>
+                  <Input placeholder="Name" {...field} />
+                </FormControl>
+                <FormMessage />
             </FormItem>
           )}
         />
