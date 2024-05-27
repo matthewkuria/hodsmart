@@ -46,10 +46,7 @@ export function CreateTeacherForm(){
               <FormLabel>TSC Number</FormLabel>
               <FormControl>
                 <Input placeholder="TSC Number" {...field} />
-              </FormControl>
-              <FormDescription>
-                This is your public display name.
-              </FormDescription>
+              </FormControl>              
               <FormMessage />
             </FormItem>
           )}
