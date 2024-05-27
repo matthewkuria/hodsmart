@@ -73,7 +73,7 @@ export function CreateTeacherForm(){
             <FormItem>
                 <FormLabel>Subject:</FormLabel>
                 <FormControl>
-                  <Input placeholder="Name" {...field} />
+                  <Input placeholder="Subjects" {...field} />
                 </FormControl>
                 <FormMessage />
             </FormItem>
