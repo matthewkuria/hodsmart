@@ -16,7 +16,7 @@ import { Input } from "@/components/ui/input"
 
 const formSchema = z.object({
     tscNumber:  z.string().min(2).max(50),
-    fullName:  z.string().min(2).max(50),
+    fullName:  z.string().min(2),
     subjects:  z.string().min(2).max(50),
     
 })
@@ -26,6 +26,8 @@ export function CreateTeacherForm(){
     resolver: zodResolver(formSchema),
     defaultValues: {
       tscNumber: "",
+      fullName: "",
+      subjects:""
     },
   })
    // 2. Define a submit handler.
@@ -56,7 +58,20 @@ export function CreateTeacherForm(){
           name="fullName"
           render={({ field }) => (
             <FormItem>
-                <FormLabel>Teacher's Name:</FormLabel>
+                <FormLabel> Name:</FormLabel>
+                <FormControl>
+                  <Input placeholder="Name" {...field} />
+                </FormControl>
+                <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="subjects"
+          render={({ field }) => (
+            <FormItem>
+                <FormLabel>Subject:</FormLabel>
                 <FormControl>
                   <Input placeholder="Name" {...field} />
                 </FormControl>
