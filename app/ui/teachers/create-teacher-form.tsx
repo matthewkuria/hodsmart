@@ -1,4 +1,8 @@
 "use client"
+import { db } from "../../firebaseConfig"
+import { collection, addDoc } from "firebase/firestore";
+import React, { useState } from "react";
+
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
@@ -20,7 +24,26 @@ const formSchema = z.object({
     subjects:  z.string().min(2).max(50),
     
 })
-export function CreateTeacherForm(){
+async function addDataToFireStore(tscNumber: any, fullName: any, subjects: any) {
+  try {
+    const docRef = await addDoc(collection(db, "teachers"), {
+      tscNumber: tscNumber,
+      fullName: fullName,
+      subjects: subjects
+    });
+    console.log("Data written succesfully with ID:", docRef.id);
+    return true;
+  } catch (error) {
+    console.log("error adding the teacher", error)
+    return false;
+  }
+}
+export function CreateTeacherForm() {
+  
+  const [tscNumber, setTscNumber] = useState("");
+  const [fullName, setfullName] = useState("");
+  const [subjects, setsubjects] = useState("");
+  
       // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -30,55 +53,23 @@ export function CreateTeacherForm(){
       subjects:""
     },
   })
-   // 2. Define a submit handler.
-   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values)
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const added = await addDataToFireStore(tscNumber, fullName, subjects);
+    if (added) {
+      setTscNumber("");
+      setfullName("");
+      setsubjects("");
+      alert("Teacher added successfully!")
+    }
+
+   
+ }
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <FormField
-          control={form.control}
-          name="tscNumber"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>TSC Number:</FormLabel>
-              <FormControl>
-                <Input placeholder="TSC Number" {...field} />
-              </FormControl>              
-              <FormMessage />
-            </FormItem>            
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="fullName"
-          render={({ field }) => (
-            <FormItem>
-                <FormLabel> Name:</FormLabel>
-                <FormControl>
-                  <Input placeholder="Name" {...field} />
-                </FormControl>
-                <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="subjects"
-          render={({ field }) => (
-            <FormItem>
-                <FormLabel>Subject:</FormLabel>
-                <FormControl>
-                  <Input placeholder="Subjects" {...field} />
-                </FormControl>
-                <FormMessage />
-            </FormItem>
-          )}
-        />
+      <form onSubmit={handleSubmit} className="space-y-8">
+        
         <Button type="submit">Save</Button>
       </form>
     </Form>
