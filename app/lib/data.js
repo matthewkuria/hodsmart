@@ -1,6 +1,7 @@
+"use client"
 // Fetch Data from firebase DB
 import { useEffect, useState } from "react";
-import { db } from "./firebase";
+import { db } from "../firebaseConfig";
 import { collection, getDocs } from "firebase/firestore";
 
 const useFetchData = () => {

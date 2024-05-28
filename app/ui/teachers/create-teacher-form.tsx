@@ -27,7 +27,7 @@ const formSchema = z.object({
 })
 async function addDataToFireStore(tscNumber: any, fullName: any, subjects: any) {
   try {
-    const docRef = await addDoc(collection(db, "nwteachers"), {
+    const docRef = await addDoc(collection(db, "teachers"), {
       tscNumber: tscNumber,
       fullName: fullName,
       subjects: subjects
