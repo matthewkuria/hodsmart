@@ -45,9 +45,9 @@ export default function DataTable() {
     <Table>
       <TableHeader>
         <TableRow>
-          <TableCell>ID</TableCell>
-          <TableCell>Name</TableCell>
-          <TableCell>Age</TableCell>
+          <TableCell>TSC NO: </TableCell>
+          <TableCell>Full Name</TableCell>
+          <TableCell>Subjects Taught</TableCell>
           {/* Add more headers as needed */}
         </TableRow>
       </TableHeader>
