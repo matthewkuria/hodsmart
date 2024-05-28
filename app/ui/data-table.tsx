@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input"
 import Link from "next/link"
 import useFetchData from "@/app/lib/data"
 import { SkeletonCard } from "./skeletons/loadingTeacherSkeleton"
+
 import {
   ColumnDef,
   flexRender,
@@ -40,7 +41,14 @@ export default function DataTable() {
 
   if (loading) {
     return (
-      <SkeletonCard />
+      <div className="flex items-center justify-between p-4">
+        <div className="p-1 flex">
+          <SkeletonCard />
+          <SkeletonCard />
+          <SkeletonCard />          
+          <SkeletonCard />          
+        </div>
+      </div>
     );
   }
 
