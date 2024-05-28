@@ -72,7 +72,9 @@ export default function DataTable() {
           </TableRow>
         ))}
       </TableBody>
+      <Button><Link href="/dashboard/teachers/add-teacher">Add</Link></Button>
     </Table>
+    
   );
 }
 
