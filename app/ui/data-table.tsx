@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import Link from "next/link"
 import useFetchData from "@/app/lib/data"
+import { SkeletonCard } from "./skeletons/loadingTeacherSkeleton"
 import {
   ColumnDef,
   flexRender,
@@ -38,7 +39,9 @@ export default function DataTable() {
   console.log(data)
 
   if (loading) {
-    return <p>Loading...</p>;
+    return (
+      <SkeletonCard />
+    );
   }
 
   return (
