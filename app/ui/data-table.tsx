@@ -1,5 +1,4 @@
 "use client"
-
 import Link from "next/link"
 import useFetchData from "@/app/lib/data"
 import { SkeletonCard } from "./skeletons/loadingTeacherSkeleton"
@@ -212,6 +211,9 @@ export default function DataTable() {
               })}
           </DropdownMenuContent>
         </DropdownMenu>
+        <Button>
+          <Link href="/dashboard/teachers/add-teacher">Add</Link>
+        </Button>
       </div>
       <div className="rounded-md border">
         <Table>
