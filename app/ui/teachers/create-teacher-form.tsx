@@ -69,7 +69,8 @@ export function CreateTeacherForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={handleSubmit} className="space-y-8 shadow-md max-w-md">
+      <div className=" p-9 bg-slate-50 ">        
+      <form onSubmit={handleSubmit} className="space-y-4 shadow-md ">
         <Label htmlFor="tscNumber">TSC Number:</Label>
         <Input
           type="text"
@@ -93,6 +94,7 @@ export function CreateTeacherForm() {
         />
         <Button type="submit">Save</Button>
       </form>
+      </div>
     </Form>
   )
 }
