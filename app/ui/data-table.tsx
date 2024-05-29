@@ -40,7 +40,7 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
-const data:Teacher[] = useFetchData();
+// const data:Teacher[] = useFetchData();
 
 export type Teacher = {
   id: string
@@ -76,7 +76,7 @@ export const columns: ColumnDef<Teacher>[] = [
     accessorKey: "tscNumber",
     header: "TSC Number",
     cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("status")}</div>
+      <div className="capitalize">{row.getValue("tscNumber")}</div>
     ),
   },
   {
@@ -92,14 +92,14 @@ export const columns: ColumnDef<Teacher>[] = [
         </Button>
       )
     },
-    cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
+    cell: ({ row }) => <div className="lowercase">{row.getValue("fullName")}</div>,
   },
   {
     accessorKey: "subjects",
-    header: () => <div className="text-right">Subjects</div>,
-    cell: ({ row }) => {
-     
-    },
+    header: () => <div className="text-right mr-10">Subjects</div>,
+    cell: ({ row }) =><div className="uppercase mr-0"> {row.getValue("subjects")}</div>,
+    
+    
   },
   {
     id: "actions",
@@ -133,7 +133,21 @@ export const columns: ColumnDef<Teacher>[] = [
 ]
 
 export default function DataTable() {
-  
+   const { data, loading } = useFetchData();
+  console.log(data)
+
+// if (loading) {
+//     return (
+//       <div className="flex items-center justify-between p-4">
+//         <div className="p-1 flex">
+//           <SkeletonCard />
+//           <SkeletonCard />
+//           <SkeletonCard />          
+//           <SkeletonCard />          
+//         </div>
+//       </div>
+//     );
+//   }
   const [sorting, setSorting] = React.useState<SortingState>([])
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
