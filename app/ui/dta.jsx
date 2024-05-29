@@ -1,4 +1,9 @@
 "use client"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import Link from "next/link"
+import useFetchData from "@/app/lib/data"
+import { SkeletonCard } from "./skeletons/loadingTeacherSkeleton"
 
 import * as React from "react"
 import {
