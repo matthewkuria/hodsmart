@@ -20,7 +20,7 @@ const useFetchData = () => {
     };
 
     fetchData();
-  }, []);
+  }, [data]);
 
   return { data, loading };
 };

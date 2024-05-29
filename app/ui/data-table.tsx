@@ -135,18 +135,18 @@ export default function DataTable() {
    const { data, loading } = useFetchData();
   console.log(data)
 
-// if (loading) {
-//     return (
-//       <div className="flex items-center justify-between p-4">
-//         <div className="p-1 flex">
-//           <SkeletonCard />
-//           <SkeletonCard />
-//           <SkeletonCard />          
-//           <SkeletonCard />          
-//         </div>
-//       </div>
-//     );
-//   }
+if (loading) {
+    return (
+      <div className="flex items-center justify-between p-4">
+        <div className="p-1 flex">
+          <SkeletonCard />
+          <SkeletonCard />
+          <SkeletonCard />          
+          <SkeletonCard />          
+        </div>
+      </div>
+    );
+  }
   const [sorting, setSorting] = React.useState<SortingState>([])
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
