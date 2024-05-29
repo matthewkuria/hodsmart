@@ -69,7 +69,7 @@ export function CreateTeacherForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={handleSubmit} className="space-y-8 shadow-md">
+      <form onSubmit={handleSubmit} className="space-y-8 shadow-md max-w-md">
         <Label htmlFor="tscNumber">TSC Number:</Label>
         <Input
           type="text"
