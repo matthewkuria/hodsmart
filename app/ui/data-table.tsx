@@ -52,6 +52,7 @@ export type Teacher = {
 async function deleteTeacher(id: string) {
   const docRef = doc(db, "teachers", id)
   await deleteDoc(docRef)
+  alert("The teacher record deleted!")
 }
 
 export const columns: ColumnDef<Teacher>[] = [
@@ -130,6 +131,7 @@ export const columns: ColumnDef<Teacher>[] = [
             <DropdownMenuSeparator />
             <DropdownMenuItem
               className="text-red-500"
+              onClick={()=>deleteTeacher(teacher.id)}
             >Delete Teacher
             </DropdownMenuItem>
             <DropdownMenuItem>View Subject allocations</DropdownMenuItem>
@@ -142,7 +144,7 @@ export const columns: ColumnDef<Teacher>[] = [
 
 export default function DataTable() {
    const { data, loading } = useFetchData();
-  console.log(data)
+ 
 
 // if (loading) {
 //     return (
