@@ -8,7 +8,7 @@ export default function SearchBar() {
            <h1 className="text-blue-500 text-3xl">Dashboard</h1>            
         </div>
         <div className="w-full">
-            <Input type="search" placeholder="search for a teacher or subjects" />
+            <Input type="search" placeholder="Search for a teacher or subjects" />
         </div>        
     </main>
     )
