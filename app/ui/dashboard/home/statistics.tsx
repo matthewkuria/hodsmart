@@ -34,18 +34,18 @@ export default function DashboardStatistics() {
                 </CardHeader>
                 <CardContent className=" flex flex-col mx-auto items-center">
                     <Image
-                        src="/teacher-icon.png"
+                        src="/subjects.png"
                         alt=""
                         width={120}
                         height={150}
                         className="justify-center"
                     />
-                    <h3 className="font-bold">66</h3>
+                    <h3 className="font-bold">14</h3>
                 </CardContent>                               
             </Card>
-            <Card className="bg-white  items-center rounded-lg  w-[150px] h-[150px] mx-4 p-4  hover:border-blue-500 hover:shadow-lg">
+            <Card className="bg-blue-50  items-center rounded-lg  w-[250px] h-[150px] mx-4 p-4  hover:border-blue-500 hover:shadow-lg">
                 <CardHeader>
-                    <CardTitle>Teachers</CardTitle>                   
+                    <CardTitle>View Subjects allocations</CardTitle>                   
                 </CardHeader>
                 <CardContent className=" flex flex-col mx-auto items-center">
                     <Image
