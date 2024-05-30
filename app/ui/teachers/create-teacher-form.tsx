@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Label } from "@radix-ui/react-label";
+import Link from "next/link";
 
 const formSchema = z.object({
     tscNumber:  z.string().min(2).max(50),
@@ -40,7 +41,7 @@ async function addDataToFireStore(tscNumber: any, fullName: any, subjects: any) 
   }
 }
 export function CreateTeacherForm() {
-  
+  const [formData, setFormData] = useState([])
   const [tscNumber, setTscNumber] = useState("");
   const [fullName, setfullName] = useState("");
   const [subjects, setsubjects] = useState("");
@@ -61,7 +62,7 @@ export function CreateTeacherForm() {
       setTscNumber("");
       setfullName("");
       setsubjects("");
-      alert("Teacher added successfully!")
+      confirm("Teacher added successfully!")
     }
 
    
@@ -69,7 +70,7 @@ export function CreateTeacherForm() {
 
   return (
     <Form {...form}>
-      <div className=" p-9 bg-slate-50 ">        
+      <div className=" p-9 bg-slate-50 w-full">        
       <form onSubmit={handleSubmit} className="space-y-4 shadow-md ">
         <Label htmlFor="tscNumber">TSC Number:</Label>
         <Input
@@ -94,9 +95,13 @@ export function CreateTeacherForm() {
           value={subjects}
           onChange={(e) => setsubjects(e.target.value)}
           required
-        />
+          />
+        
         <Button type="submit">Save</Button>
-      </form>
+        </form>
+        <div className="flex pb-2 px-2 items-end justify-end -mt-10">
+          <Button className="bg-red-500"><Link href="/dashboard/teachers">Cancel</Link></Button>
+        </div>
       </div>
     </Form>
   )
