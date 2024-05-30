@@ -93,6 +93,7 @@ export function CreateTeacherForm() {
           id="subjects"
           value={subjects}
           onChange={(e) => setsubjects(e.target.value)}
+          required
         />
         <Button type="submit">Save</Button>
       </form>
