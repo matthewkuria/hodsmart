@@ -122,7 +122,10 @@ export const columns: ColumnDef<Teacher>[] = [
               Copy TSC Number
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View Teacher</DropdownMenuItem>
+            <DropdownMenuItem
+              className="text-red-500"
+            >Delete Teacher
+            </DropdownMenuItem>
             <DropdownMenuItem>View Subject allocations</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
