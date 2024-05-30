@@ -12,7 +12,7 @@ export default function Page() {
             <GreetingsComponent />
             <div className="flex flex-col">
                 <DashboardStatistics />
-                <div className="mt-4 rounded">
+                <div className="mt-4 rounded-md">
                     <Charts />
                 </div>
            </div>

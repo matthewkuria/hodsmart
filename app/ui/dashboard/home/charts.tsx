@@ -89,7 +89,7 @@ export default function SubjectsCharts() {
             </BarChart>
           </div>
           <div className="mx-5">
-            <PieChart width={500} height={500}>
+            <PieChart width={400} height={400}>
                 <Pie
                     dataKey="value"
                     startAngle={360}
@@ -97,7 +97,7 @@ export default function SubjectsCharts() {
                     data={data2}
                     cx={200}
                     cy={200}
-                    outerRadius={120}
+                    outerRadius={110}
                     fill="#8884d8"
                     label
                 />
