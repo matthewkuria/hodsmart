@@ -1,5 +1,6 @@
 "use client"
 
+import Charts from "../ui/dashboard/home/charts"
 import GreetingsComponent from "../ui/dashboard/home/greetings"
 import SearchBar from "../ui/dashboard/home/search-component"
 import DashboardStatistics from "../ui/dashboard/home/statistics"
@@ -9,7 +10,12 @@ export default function Page() {
         <main className="bg-slate-100">
             <SearchBar />
             <GreetingsComponent />
-            <DashboardStatistics />
+            <div className="flex flex-col">
+                <DashboardStatistics />
+                <div className="mt-4 rounded">
+                    <Charts />
+                </div>
+           </div>
         </main>
     )
 }
