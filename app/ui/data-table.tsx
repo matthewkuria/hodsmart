@@ -1,4 +1,6 @@
 "use client"
+import { db } from "@/app/firebaseConfig"
+import { doc, deleteDoc } from "firebase/firestore";
 import Link from "next/link"
 import useFetchData from "@/app/lib/data"
 import { SkeletonCard } from "./skeletons/loadingTeacherSkeleton"
@@ -46,6 +48,10 @@ export type Teacher = {
   tscNumber: number 
   fullName: string
   subjects: string
+}
+async function deleteTeacher(id: string) {
+  const docRef = doc(db, "teachers", id)
+  await deleteDoc(docRef)
 }
 
 export const columns: ColumnDef<Teacher>[] = [
