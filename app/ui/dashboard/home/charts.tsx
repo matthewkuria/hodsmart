@@ -7,7 +7,7 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
+  Legend,PieChart, Pie
 } from "recharts";
 
 const data = [
@@ -54,10 +54,18 @@ const data = [
     amt: 2100,
   },
 ];
+const data2 = [
+  { name: "Group A", value: "kiswa" },
+  { name: "Group B", value: 300 },
+  { name: "Group C", value: 300 },
+  { name: "Group D", value: 200 },
+  { name: "Group E", value: 278 },
+  { name: "Group F", value: 189 }
+];
 
 export default function SubjectsCharts() {
   return (
-    <main className=" bg-white">
+    <main className=" bg-white md:flex">
           <div className="">
             <h3 className="text-xl font-bold">Teachers distribution</h3>
             <BarChart
@@ -79,6 +87,21 @@ export default function SubjectsCharts() {
             <Bar dataKey="male" fill="#8884d8" />
             <Bar dataKey="female" fill="#82ca9d" />
             </BarChart>
+          </div>
+          <div className="mx-5">
+            <PieChart width={500} height={500}>
+                <Pie
+                    dataKey="value"
+                    startAngle={360}
+                    endAngle={0}
+                    data={data2}
+                    cx={200}
+                    cy={200}
+                    outerRadius={120}
+                    fill="#8884d8"
+                    label
+                />
+            </PieChart>
           </div>
    </main>
   );
