@@ -8,7 +8,8 @@ import {
     CardDescription,
     CardFooter    
 } from "@/components/ui/card"
- import Image from "next/image"
+import Image from "next/image"
+import { ArrowRightIcon } from "@heroicons/react/24/outline"
 
 export default function DashboardStatistics() {
     return (
@@ -55,7 +56,7 @@ export default function DashboardStatistics() {
                         height={150}
                         className="justify-center"
                     />
-                    <h3 className="font-bold">66</h3>
+                    <ArrowRightIcon className="size-5 animate-bounce"/>
                 </CardContent>                               
             </Card>
         </main>
