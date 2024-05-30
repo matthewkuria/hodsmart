@@ -6,7 +6,7 @@ import DashboardStatistics from "../ui/dashboard/home/statistics"
 
 export default function Page() {
     return(
-        <main className="bg-slate-50">
+        <main className="bg-slate-100">
             <SearchBar />
             <GreetingsComponent />
             <DashboardStatistics />
