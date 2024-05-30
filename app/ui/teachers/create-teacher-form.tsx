@@ -55,7 +55,7 @@ export function CreateTeacherForm() {
       subjects:""
     },
   })
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e:any) => {
     e.preventDefault();
     const added = await addDataToFireStore(tscNumber, fullName, subjects);
     if (added) {
