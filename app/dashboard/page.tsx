@@ -1,5 +1,11 @@
-export default function Page(){
+"use client"
+
+import SearchBar from "../ui/dashboard/home/search-component"
+
+export default function Page() {
     return(
-        <h1 className="">Dashboard Goes Here</h1>
+        <main className="">
+            <SearchBar />
+        </main>
     )
 }
