@@ -104,7 +104,7 @@ export const columns: ColumnDef<Teacher>[] = [
     id: "actions",
     enableHiding: false,
     cell: ({ row }) => {
-      const payment = row.original
+      const teacher = row.original
 
       return (
         <DropdownMenu>
@@ -117,13 +117,13 @@ export const columns: ColumnDef<Teacher>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(payment.id)}
+              onClick={() => navigator.clipboard.writeText(teacher.id)}
             >
-              Copy payment ID
+              Copy TSC Number
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
-            <DropdownMenuItem>View payment details</DropdownMenuItem>
+            <DropdownMenuItem>View Teacher</DropdownMenuItem>
+            <DropdownMenuItem>View Subject allocations</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       )
@@ -135,22 +135,20 @@ export default function DataTable() {
    const { data, loading } = useFetchData();
   console.log(data)
 
-if (loading) {
-    return (
-      <div className="flex items-center justify-between p-4">
-        <div className="p-1 flex">
-          <SkeletonCard />
-          <SkeletonCard />
-          <SkeletonCard />          
-          <SkeletonCard />          
-        </div>
-      </div>
-    );
-  }
+// if (loading) {
+//     return (
+//       <div className="flex items-center justify-between p-4">
+//         <div className="p-1 flex">
+//           <SkeletonCard />
+//           <SkeletonCard />
+//           <SkeletonCard />          
+//           <SkeletonCard />          
+//         </div>
+//       </div>
+//     );
+//   }
   const [sorting, setSorting] = React.useState<SortingState>([])
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    []
-  )
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([])
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({})
   const [rowSelection, setRowSelection] = React.useState({})

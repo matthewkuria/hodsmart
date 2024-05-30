@@ -76,14 +76,16 @@ export function CreateTeacherForm() {
           type="text"
           id="tscNumber"
           value={tscNumber}
-          onChange={(e) => setTscNumber(e.target.value)}
+            onChange={(e) => setTscNumber(e.target.value)}
+            required
         />
         <Label htmlFor="fullName">Name:</Label>
         <Input
           type="text"
           id="fullName"
           value={fullName}
-          onChange={(e) => setfullName(e.target.value)}
+            onChange={(e) => setfullName(e.target.value)}
+            required
         />
         <Label htmlFor="subjects">Subjects</Label>
         <Input
