@@ -2,10 +2,10 @@
 import Image from "next/image"
 export default function GreetingsComponent() {
     return (
-        <main className=" flex items-center justify-between bg-gradient-to-r from-blue-500 h-40 rounded-lg">
-            <div className="flex items-center">
-                <h1 className="text-white text-xl">Welcome back,HOD!</h1>
-                <p className=""></p>
+        <main className=" flex items-center justify-between bg-gradient-to-r from-blue-500 h-40 rounded-lg mt-3">
+            <div className="flex flex-col items-center text-white p-5">
+                <h1 className=" text-xl font-bold">Welcome back,HOD!</h1>
+                <p className="text-xs mt-3">We know that it takes time and love to choose us.</p>
             </div>
             <div className="">
                 {/* Image for the desktop design */}
