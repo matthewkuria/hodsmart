@@ -92,8 +92,8 @@ export default function SubjectsCharts() {
             <PieChart width={400} height={400}>
                 <Pie
                     dataKey="value"
-                    startAngle={360}
-                    endAngle={0}
+                    startAngle={0}
+                    endAngle={360}
                     data={data2}
                     cx={200}
                     cy={200}
