@@ -27,21 +27,31 @@ const formSchema = z.object({
     gender: z.string()
     
 })
-async function addDataToFireStore(tscNumber:any,fullName:any,subjects:any,gender:any) {
+
+// Function to add a document to a specified collection
+const addDocumentToCollection = async (collectionName:any, documentData:any) => {
   try {
-    const docRef = await addDoc(collection(db, "nwteachers"), {
-      tscNumber: tscNumber,
-      fullName: fullName,
-      subjects: subjects,
-      gender:gender
-    });
-    console.log("Data written succesfully with ID:", docRef.id);
-    return true;
+    const docRef = await addDoc(collection(db, collectionName), documentData);
+    console.log("Document written with ID: ", docRef.id);
   } catch (error) {
-    console.log("error adding the teacher", error)
-    return false;
+    console.error("Error adding document: ", error);
   }
-}
+};
+// async function addDataToFireStore(tscNumber:any,fullName:any,subjects:any,gender:any) {
+//   try {
+//     const docRef = await addDoc(collection(db, "teachers"), {
+//       tscNumber: tscNumber,
+//       fullName: fullName,
+//       subjects: subjects,
+//       gender:gender
+//     });
+//     console.log("Data written succesfully with ID:", docRef.id);
+//     return true;
+//   } catch (error) {
+//     console.log("error adding the teacher", error)
+//     return false;
+//   }
+// }
 export function CreateTeacherForm() {
   const [formData, setFormData] = useState({
       tscNumber: "",
@@ -51,7 +61,8 @@ export function CreateTeacherForm() {
   })
  
   
-  const handleChange = (e:any) => {
+  const handleChange = (e: any) => {
+    console.log(formData)
     const { name, value } = e.target;
     setFormData((prevFormData) => ({
       ...prevFormData,
@@ -61,10 +72,15 @@ export function CreateTeacherForm() {
   // Handle submit to add data to the firebase database
   const handleSubmit = async (e:any) => {
     e.preventDefault();
-    const added = await addDataToFireStore(tscNumber,fullName,subjects,gender);
-    if (added) {      
-    confirm("Teacher added successfully!")
-    }
+    const documentData = {
+       tscNumber: formData.tscNumber,
+      fullName: formData.fullName,
+      subjects: formData.subjects,
+      gender: formData.gender
+    };
+    const collectionName = 'teachers';  // Specify your collection name here
+    await addDocumentToCollection(collectionName, documentData);
+    // Reset the form
     setFormData({
       tscNumber: "",
       fullName: "",
@@ -72,7 +88,7 @@ export function CreateTeacherForm() {
       gender:""
     });
   };
-  
+   
       // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -80,7 +96,7 @@ export function CreateTeacherForm() {
       tscNumber: "",
       fullName: "",
       subjects: "",
-      gender:""
+      gender:"male"
     },
   })
 
@@ -122,8 +138,9 @@ export function CreateTeacherForm() {
               name="gender"
               value={formData.gender}
               onChange={handleChange}
-            >
-              <option value="" selected>--please choose gender--</option>
+              required
+            >     
+            <option value="">--Choose Gender--</option>  
               <option value="male" >Male</option>
               <option value="female">Female</option>
             </select>
