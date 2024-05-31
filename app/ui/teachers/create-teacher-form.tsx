@@ -27,7 +27,7 @@ const formSchema = z.object({
     gender: z.string()
     
 })
-async function addDataToFireStore(tscNumber: any, fullName: any, subjects: any, gender:any) {
+async function addDataToFireStore(tscNumber:any,fullName:any,subjects:any,gender:any) {
   try {
     const docRef = await addDoc(collection(db, "teachers"), {
       tscNumber: tscNumber,
@@ -44,16 +44,33 @@ async function addDataToFireStore(tscNumber: any, fullName: any, subjects: any, 
 }
 export function CreateTeacherForm() {
   const [formData, setFormData] = useState({
-     tscNumber: "",
+      tscNumber: "",
       fullName: "",
       subjects: "",
       gender:""
   })
-  const handleChange = (e) => {
+  const[tscNumber,setTscNumber] =useState("")
+  const[fullName,setfullName] =useState("")
+  const[subjects,setsubjects] =useState("")
+  const[gender,setgender] =useState("")
+  const handleChange = (e:any) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
       [name]: value,
+    });
+  };
+  const handleSubmit = async (e:any) => {
+    e.preventDefault();
+    const added = await addDataToFireStore(tscNumber,fullName,subjects,gender);
+    if (added) {      
+    confirm("Teacher added successfully!")
+    }
+    setFormData({
+      tscNumber: "",
+      fullName: "",
+      subjects: "",
+      gender:""
     });
   };
   
@@ -67,15 +84,16 @@ export function CreateTeacherForm() {
       gender:""
     },
   })
-  const handleSubmit = async (e:any) => {
-    e.preventDefault();
-    const added = await addDataToFireStore(tscNumber, fullName, subjects,gender);
-    if (added) {      
-      confirm("Teacher added successfully!")
-    }
+ 
+//   const handleSubmit = async (e:any) => {
+//     e.preventDefault();
+//     const added = await addDataToFireStore(tscNumber, fullName, subjects,gender);
+//     if (added) {      
+//       confirm("Teacher added successfully!")
+//     }
 
    
- }
+//  }
 
   return (
     <Form {...form}>

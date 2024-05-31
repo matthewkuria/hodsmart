@@ -48,6 +48,7 @@ export type Teacher = {
   tscNumber: number 
   fullName: string
   subjects: string
+  gender:string
 }
 async function deleteTeacher(id: string) {
   const docRef = doc(db, "teachers", id)
@@ -85,6 +86,13 @@ export const columns: ColumnDef<Teacher>[] = [
       <div className="capitalize">{row.getValue("tscNumber")}</div>
     ),
   },
+   {
+    accessorKey: "gender",
+    header: "Gender",
+    cell: ({ row }) => (
+      <div className="capitalize">{row.getValue("gender")}</div>
+    ),
+  },
   {
     accessorKey: "fullName",
     header: ({ column }) => {
@@ -103,8 +111,7 @@ export const columns: ColumnDef<Teacher>[] = [
   {
     accessorKey: "subjects",
     header: () => <div className="text-right mr-10">Subjects</div>,
-    cell: ({ row }) =><div className="uppercase mr-0"> {row.getValue("subjects")}</div>,
-    
+    cell: ({ row }) =><div className="uppercase mr-0"> {row.getValue("subjects")}</div>,   
     
   },
   {
