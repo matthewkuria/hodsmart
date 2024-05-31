@@ -106,11 +106,11 @@ export const columns: ColumnDef<Teacher>[] = [
         </Button>
       )
     },
-    cell: ({ row }) => <div className="lowercase">{row.getValue("fullName")}</div>,
+    cell: ({ row }) => <div className="uppercase  font-medium">{row.getValue("fullName")}</div>,
   },
   {
     accessorKey: "subjects",
-    header: () => <div className="text-right mr-10">Subjects</div>,
+    header: () => <div className="m-1">Subjects</div>,
     cell: ({ row }) =><div className="uppercase mr-0"> {row.getValue("subjects")}</div>,   
     
   },
@@ -136,6 +136,10 @@ export const columns: ColumnDef<Teacher>[] = [
               Copy TSC Number
             </DropdownMenuItem>
             <DropdownMenuSeparator />
+            <DropdownMenuItem
+              className="text-blue-400"
+            >Update Record
+            </DropdownMenuItem>
             <DropdownMenuItem
               className="text-red-500"
               onClick={()=>deleteTeacher(teacher.id)}

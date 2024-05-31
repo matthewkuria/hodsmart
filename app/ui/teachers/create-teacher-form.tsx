@@ -29,7 +29,7 @@ const formSchema = z.object({
 })
 
 // Function to add a document to a specified collection
-const addDocumentToCollection = async (collectionName:any, documentData:any) => {
+const addTeacher = async (collectionName:any, documentData:any) => {
   try {
     const docRef = await addDoc(collection(db, collectionName), documentData);
     console.log("Document written with ID: ", docRef.id);
@@ -37,32 +37,17 @@ const addDocumentToCollection = async (collectionName:any, documentData:any) => 
     console.error("Error adding document: ", error);
   }
 };
-// async function addDataToFireStore(tscNumber:any,fullName:any,subjects:any,gender:any) {
-//   try {
-//     const docRef = await addDoc(collection(db, "teachers"), {
-//       tscNumber: tscNumber,
-//       fullName: fullName,
-//       subjects: subjects,
-//       gender:gender
-//     });
-//     console.log("Data written succesfully with ID:", docRef.id);
-//     return true;
-//   } catch (error) {
-//     console.log("error adding the teacher", error)
-//     return false;
-//   }
-// }
+
 export function CreateTeacherForm() {
+  // Create a single formData variable 
   const [formData, setFormData] = useState({
       tscNumber: "",
       fullName: "",
       subjects: "",
       gender:""
   })
- 
-  
-  const handleChange = (e: any) => {
-    console.log(formData)
+  // create handleChange function to collect data when there is a change
+  const handleChange = (e: any) => {    
     const { name, value } = e.target;
     setFormData((prevFormData) => ({
       ...prevFormData,
@@ -79,13 +64,16 @@ export function CreateTeacherForm() {
       gender: formData.gender
     };
     const collectionName = 'teachers';  // Specify your collection name here
-    await addDocumentToCollection(collectionName, documentData);
+    const added = await addTeacher(collectionName, documentData);
+    
+      alert("Teacher added successfully!")
+    
     // Reset the form
     setFormData({
       tscNumber: "",
       fullName: "",
       subjects: "",
-      gender:""
+      gender:"male"
     });
   };
    
