@@ -38,7 +38,7 @@ export default function DashboardStatistics() {
                 <CardContent className=" flex flex-col mx-auto items-center">
                     <Image
                         src="/teacher-icon.png"
-                        alt=""
+                        alt="the teachers icon"
                         width={120}
                         height={150}
                         className="justify-center"
@@ -53,7 +53,7 @@ export default function DashboardStatistics() {
                 <CardContent className=" flex flex-col mx-auto items-center">
                     <Image
                         src="/subjects.png"
-                        alt=""
+                        alt="the subjects icon"
                         width={120}
                         height={150}
                         className="justify-center"
@@ -67,8 +67,8 @@ export default function DashboardStatistics() {
                 </CardHeader>
                 <CardContent className=" flex flex-col mx-auto items-center">
                     <Image
-                        src="/teacher-icon.png"
-                        alt=""
+                        src="/allocations.png"
+                        alt="the subjects allocations icon"
                         width={120}
                         height={150}
                         className="justify-center"
