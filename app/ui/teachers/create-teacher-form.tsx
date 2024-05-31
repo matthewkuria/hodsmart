@@ -27,7 +27,7 @@ const formSchema = z.object({
     gender: z.string()
     
 })
-async function addDataToFireStore(tscNumber: any, fullName: any, subjects: any) {
+async function addDataToFireStore(tscNumber: any, fullName: any, subjects: any, gender:any) {
   try {
     const docRef = await addDoc(collection(db, "teachers"), {
       tscNumber: tscNumber,
@@ -43,10 +43,19 @@ async function addDataToFireStore(tscNumber: any, fullName: any, subjects: any) 
   }
 }
 export function CreateTeacherForm() {
-  const [formData, setFormData] = useState([])
-  const [tscNumber, setTscNumber] = useState("");
-  const [fullName, setfullName] = useState("");
-  const [subjects, setsubjects] = useState("");
+  const [formData, setFormData] = useState({
+     tscNumber: "",
+      fullName: "",
+      subjects: "",
+      gender:""
+  })
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
   
       // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
@@ -60,11 +69,8 @@ export function CreateTeacherForm() {
   })
   const handleSubmit = async (e:any) => {
     e.preventDefault();
-    const added = await addDataToFireStore(tscNumber, fullName, subjects);
-    if (added) {
-      setTscNumber("");
-      setfullName("");
-      setsubjects("");
+    const added = await addDataToFireStore(tscNumber, fullName, subjects,gender);
+    if (added) {      
       confirm("Teacher added successfully!")
     }
 
@@ -78,30 +84,38 @@ export function CreateTeacherForm() {
         <Label htmlFor="tscNumber">TSC Number:</Label>
         <Input
           type="text"
-          id="tscNumber"
-          value={tscNumber}
-            onChange={(e) => setTscNumber(e.target.value)}
+            id="tscNumber"
+            name="tscNumber"
+          value={formData.tscNumber}
+            onChange={handleChange}
             required
         />
         <Label htmlFor="fullName">Name:</Label>
         <Input
           type="text"
-          id="fullName"
-          value={fullName}
-            onChange={(e) => setfullName(e.target.value)}
+            id="fullName"
+            name="fullName"
+          value={formData.fullName}
+            onChange={handleChange}
             required
         />
         <Label htmlFor="subjects">Subjects</Label>
         <Input
           type="text"
-          id="subjects"
-          value={subjects}
-          onChange={(e) => setsubjects(e.target.value)}
+            id="subjects"
+            name="subjects"
+          value={formData.subjects}
+          onChange={handleChange}
           required
           />
           <div className="w-full">
               <Label htmlFor="gender"></Label>
-            <select id="gender">
+            <select
+              id="gender"
+              name="gender"
+              value={formData.gender}
+              onChange={handleChange}
+            >
               <option value="" selected>--please choose gender--</option>
               <option value="male" >Male</option>
               <option value="female">Female</option>
