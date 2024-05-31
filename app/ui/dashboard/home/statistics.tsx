@@ -1,5 +1,4 @@
 "use client"
-
 import {
     Card,
     CardHeader,
@@ -13,13 +12,22 @@ import { ArrowRightIcon } from "@heroicons/react/24/outline"
 import { db } from "@/app/firebaseConfig"
 import { collection, getCountFromServer, getFirestore } from "firebase/firestore"
 import { useEffect, useState } from "react"
-
-
 export default function DashboardStatistics() {
     const [teachersCount, setTeachersCount] = useState(0)
     const [subjectsCount, setsubjectsCount] = useState(0)
     useEffect(() => {
-        
+         async  function getTeachersCount() {
+             try {
+                const teachersCol = collection(db, 'teachers')
+                const snapshot = await getCountFromServer(teachersCol);
+                const totalCount = snapshot.data().count;
+                setTeachersCount(totalCount)
+             }
+             catch (error) {
+                 console.error("Error counting the number of teachers:", error);
+             }
+        }
+        getTeachersCount();
     },[])
     return (
         <main className="hidden md:flex justify-around h-40 w-3/4 mt-4 p-3 ">
