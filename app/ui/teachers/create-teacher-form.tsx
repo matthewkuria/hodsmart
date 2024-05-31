@@ -24,6 +24,7 @@ const formSchema = z.object({
     tscNumber:  z.string().min(2).max(50),
     fullName:  z.string().min(2),
     subjects:  z.string().min(2).max(50),
+    gender: z.string()
     
 })
 async function addDataToFireStore(tscNumber: any, fullName: any, subjects: any) {
@@ -31,7 +32,8 @@ async function addDataToFireStore(tscNumber: any, fullName: any, subjects: any) 
     const docRef = await addDoc(collection(db, "teachers"), {
       tscNumber: tscNumber,
       fullName: fullName,
-      subjects: subjects
+      subjects: subjects,
+      gender:gender
     });
     console.log("Data written succesfully with ID:", docRef.id);
     return true;
@@ -52,7 +54,8 @@ export function CreateTeacherForm() {
     defaultValues: {
       tscNumber: "",
       fullName: "",
-      subjects:""
+      subjects: "",
+      gender:""
     },
   })
   const handleSubmit = async (e:any) => {
@@ -96,6 +99,14 @@ export function CreateTeacherForm() {
           onChange={(e) => setsubjects(e.target.value)}
           required
           />
+          <div className="w-full">
+              <Label htmlFor="gender"></Label>
+            <select id="gender">
+              <option value="" selected>--please choose gender--</option>
+              <option value="male" >Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
         
         <Button type="submit">Save</Button>
         </form>
