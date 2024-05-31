@@ -29,7 +29,7 @@ const formSchema = z.object({
 })
 async function addDataToFireStore(tscNumber:any,fullName:any,subjects:any,gender:any) {
   try {
-    const docRef = await addDoc(collection(db, "teachers"), {
+    const docRef = await addDoc(collection(db, "nwteachers"), {
       tscNumber: tscNumber,
       fullName: fullName,
       subjects: subjects,
@@ -49,17 +49,16 @@ export function CreateTeacherForm() {
       subjects: "",
       gender:""
   })
-  const[tscNumber,setTscNumber] =useState("")
-  const[fullName,setfullName] =useState("")
-  const[subjects,setsubjects] =useState("")
-  const[gender,setgender] =useState("")
+ 
+  
   const handleChange = (e:any) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value
+    }));
   };
+  // Handle submit to add data to the firebase database
   const handleSubmit = async (e:any) => {
     e.preventDefault();
     const added = await addDataToFireStore(tscNumber,fullName,subjects,gender);
@@ -84,16 +83,6 @@ export function CreateTeacherForm() {
       gender:""
     },
   })
- 
-//   const handleSubmit = async (e:any) => {
-//     e.preventDefault();
-//     const added = await addDataToFireStore(tscNumber, fullName, subjects,gender);
-//     if (added) {      
-//       confirm("Teacher added successfully!")
-//     }
-
-   
-//  }
 
   return (
     <Form {...form}>
