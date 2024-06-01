@@ -40,24 +40,21 @@ import { lusitana } from "./fonts"
 import { Button } from "@/components/ui/button"
 import {
   Form,
-  FormControl,
-  FormDescription,
+  FormControl, 
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { useToast } from "@/components/ui/use-toast"
-import Link from "next/link";
+
 
 
 const formSchema = z.object({
     emailAddress: z.string().email(),
-    password: z.string().min(2).max(16)
+    password: z.string().min(4).max(16)
   })
-export default function LoginForm(){
-    
+export default function LoginForm(){    
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -105,7 +102,7 @@ export default function LoginForm(){
            )}
             />
           <div className="mt-5 flex items-center justify-end">             
-             <Button type="submit">Submit</Button>             
+             <Button type="submit">Login</Button>             
           </div>
          </form>
        </Form>
