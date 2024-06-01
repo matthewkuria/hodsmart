@@ -1,9 +1,11 @@
-"use client"
+"use client";
 import useAuth from "@/app/lib/useAuth";
 import { auth } from "@/app/firebaseConfig";
-import Image from "next/image"
+import Image from "next/image";
+import { SkeletonCard } from "../../skeletons/loadingTeacherSkeleton";
+
 export default function GreetingsComponent() {
-     const user = useAuth();
+     const user:any = useAuth();
     return (
         <main className=" flex items-center justify-between bg-gradient-to-r from-blue-500 h-40 rounded-lg mt-3">
             {user ? (
@@ -32,7 +34,9 @@ export default function GreetingsComponent() {
                     </div>
              </>
             ) : (
-                    <h1>Ooops...</h1>
+                    <>
+                        <SkeletonCard />
+                    </>
             )}
             
         </main>
