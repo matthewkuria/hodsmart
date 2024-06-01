@@ -6,7 +6,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebaseConfig";
 import { useRouter } from "next/navigation";
 
-const SignIn = () => {
+const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
@@ -31,7 +31,7 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default LoginForm;
 
 // import { zodResolver } from "@hookform/resolvers/zod"
 // import { useForm } from "react-hook-form"
