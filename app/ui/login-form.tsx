@@ -15,7 +15,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebaseConfig";
-import router from "next/router";
+import {useRouter} from "next/navigation";
 import { useState } from "react";
 
 
@@ -24,7 +24,8 @@ const formSchema = z.object({
     emailAddress: z.string().email(),
     password: z.string().min(4).max(16)
   })
-export default function LoginForm() {   
+export default function LoginForm() { 
+  const router = useRouter()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
     const form = useForm<z.infer<typeof formSchema>>({
