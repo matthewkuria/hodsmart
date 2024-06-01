@@ -1,38 +1,4 @@
 "use client";
-// pages/signIn.js
-
-// import { useState } from "react";
-// import { signInWithEmailAndPassword } from "firebase/auth";
-// import { auth } from "../firebaseConfig";
-// import { useRouter } from "next/navigation";
-
-// const LoginForm = () => {
-//   const [email, setEmail] = useState("");
-//   const [password, setPassword] = useState("");
-//   const router = useRouter();
-
-//   const handleSignIn = async () => {
-//     try {
-//       const userCredential = await signInWithEmailAndPassword(auth, email, password);
-//       console.log("User signed in:", userCredential.user);
-//       router.push("/dashboard"); // Redirect to home or dashboard page
-//     } catch (error:any) {
-//       console.error("Error signing in:", error.code, error.message);
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <h1>Sign In</h1>
-//       <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
-//       <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
-//       <button onClick={handleSignIn}>Sign In</button>
-//     </div>
-//   );
-// };
-
-// export default LoginForm;
-
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
@@ -50,6 +16,7 @@ import { Input } from "@/components/ui/input"
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebaseConfig";
 import router from "next/router";
+import { useState } from "react";
 
 
 
@@ -57,7 +24,9 @@ const formSchema = z.object({
     emailAddress: z.string().email(),
     password: z.string().min(4).max(16)
   })
-export default function LoginForm(){    
+export default function LoginForm() {   
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -70,11 +39,11 @@ export default function LoginForm(){
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       console.log("User signed in:", userCredential.user);
+      console.log("Sign in successful")
       router.push("/dashboard"); // Redirect to home or dashboard page
     } catch (error:any) {
       console.error("Error signing in:", error.code, error.message);
-    }
-    
+    }    
     console.log(values) 
     
   }
@@ -88,11 +57,18 @@ export default function LoginForm(){
            <FormField
              control={form.control}
              name="emailAddress"
-             render={({ field }) => (
+            render={({ field }) => (               
                <FormItem>
                  <FormLabel>User Name</FormLabel>
                  <FormControl>
-                   <Input placeholder="username" {...field} />
+                   <Input placeholder="Email Address"
+                    value={field.value}  
+                    onChange={(e) => {
+                      // call field.onchange handler
+                      field.onChange(e);
+                      setEmail(e.target.value)
+                    }}
+                   />
                  </FormControl>                                 
                  <FormMessage />
                </FormItem>
@@ -105,7 +81,13 @@ export default function LoginForm(){
             <FormItem>
                 <FormLabel>PassWord</FormLabel>
                     <FormControl>
-                        <Input placeholder="password" {...field} />
+                 <Input placeholder="password"
+                   value={field.value} 
+                   onChange={(e) => {
+                     field.onChange(e);
+                     setPassword(e.target.value)
+                   }}
+                 />
                     </FormControl> 
                 <FormMessage />
             </FormItem>
