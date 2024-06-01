@@ -35,7 +35,7 @@ export default SignIn;
 
 // import { zodResolver } from "@hookform/resolvers/zod"
 // import { useForm } from "react-hook-form"
-// import { z } from "zod"
+// import * as z from "zod"
 // import { lusitana } from "./fonts"
 // import { Button } from "@/components/ui/button"
 // import {
