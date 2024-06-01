@@ -75,7 +75,7 @@ export default function SubjectsCharts() {
             margin={{
                 top: 5,
                 right: 30,
-                left: 20,
+                left: 10,
                 bottom: 5,
             }}
             >
@@ -88,7 +88,7 @@ export default function SubjectsCharts() {
             <Bar dataKey="female" fill="#82ca9d" />
             </BarChart>
           </div>
-          <div className="mx-5">
+          <div className="mx-2">
             <PieChart width={400} height={400}>
                 <Pie
                     dataKey="value"
