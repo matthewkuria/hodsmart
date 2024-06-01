@@ -11,15 +11,22 @@ export default function SideNav() {
         className="mb-2 flex h-20 items-end justify-start rounded-md bg-blue-600 p-4 md:h-40"
         href="/dashboard"
       >
-        <div className="w-32 text-white md:w-40">
+        <div className="w-full text-white md:w-40">
           <HodSmartLogo />
         </div>
         <Image
           src="/smart-hod.png"
-          alt='Smart HOD image icon for the logo'
+          alt='Smart HOD image icon for the desktop logo'
           width={100}
           height={100}
           className="hidden md:block"
+        />
+         <Image
+          src="/smart-hod.png"
+          alt='Smart HOD image icon for the mobile logo'
+          width={50}
+          height={50}
+          className="md:hidden block"
         />
       </Link>
       <div className="flex grow flex-row justify-between space-x-2 md:flex-col md:space-x-0 md:space-y-2">
