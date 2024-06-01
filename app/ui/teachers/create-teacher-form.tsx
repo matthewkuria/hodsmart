@@ -64,10 +64,8 @@ export function CreateTeacherForm() {
       gender: formData.gender
     };
     const collectionName = 'teachers';  // Specify your collection name here
-    const added = await addTeacher(collectionName, documentData);
-    
-      alert("Teacher added successfully!")
-    
+     await addTeacher(collectionName, documentData);    
+      alert("Teacher added successfully!")    
     // Reset the form
     setFormData({
       tscNumber: "",
