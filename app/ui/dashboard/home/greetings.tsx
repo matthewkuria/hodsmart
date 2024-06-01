@@ -1,10 +1,15 @@
 "use client"
+import useAuth from "@/app/lib/useAuth";
+import { auth } from "@/app/firebaseConfig";
 import Image from "next/image"
 export default function GreetingsComponent() {
+     const user = useAuth();
     return (
         <main className=" flex items-center justify-between bg-gradient-to-r from-blue-500 h-40 rounded-lg mt-3">
-            <div className="flex flex-col items-center text-white p-5">
-                <h1 className=" text-xl font-bold">Welcome back,HOD!</h1>
+            {user ? (
+                <>
+                <div className="flex flex-col items-center text-white p-5">
+                <h1 className=" text-xl font-bold">Welcome back,{user.email}</h1>
                 <p className="text-xs mt-3">We know that it takes time and love to choose us.</p>
             </div>
             <div className="">
@@ -24,7 +29,12 @@ export default function GreetingsComponent() {
                     height={100}
                     width={200}
                 />
-            </div>
+                    </div>
+             </>
+            ) : (
+                    <h1>Ooops...</h1>
+            )}
+            
         </main>
     )
 }
