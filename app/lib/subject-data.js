@@ -1,16 +1,16 @@
+
 "use client"
 // Fetch Data from firebase DB
 import { useEffect, useState } from "react";
 import { db } from "../firebaseConfig";
 import { collection, getDocs } from "firebase/firestore";
 
-const useFetchData = () => {
+const useFetchSubjectData = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
-    const fetchData = async () => {
-      const querySnapshot = await getDocs(collection(db, "teachers"));
+    const fetchSubjectData = async () => {
+      const querySnapshot = await getDocs(collection(db, "subjects"));
       let fetchedData = [];
       querySnapshot.forEach((doc) => {
         fetchedData.push({ id: doc.id, ...doc.data() });
@@ -19,11 +19,10 @@ const useFetchData = () => {
       setLoading(false);
     };
 
-    fetchData();
+    fetchSubjectData();
   }, [data]);
 
   return { data, loading };
 };
 
-export default useFetchData;
-
+export default useFetchSubjectData;

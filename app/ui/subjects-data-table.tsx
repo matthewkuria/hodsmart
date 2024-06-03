@@ -1,6 +1,6 @@
 "use client"
 import { db } from "@/app/firebaseConfig"
-import useFetchData from "@/app/lib/data"
+import useFetchSubjectData from "@/app/lib/subject-data"
 import * as React from "react"
 import {
   ColumnDef,
@@ -38,13 +38,7 @@ import {
 } from "@/components/ui/table"
 import Link from "next/link"
 
-const data: Subject[] = [
-  {
-    subCode: "232",
-    subName: "PHY"
-  },
-  
-]
+
 
 export type Subject = {
   subCode: string,
@@ -129,7 +123,7 @@ export const columns: ColumnDef<Subject>[] = [
 ]
 
 export function SubjectsDataTable() {
-  const { data, loading } = useFetchData();
+  const { data, loading } = useFetchSubjectData();
   const [sorting, setSorting] = React.useState<SortingState>([])
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
