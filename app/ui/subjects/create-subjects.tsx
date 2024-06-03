@@ -6,6 +6,10 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod"
 
+import { db } from "../../firebaseConfig"
+import { collection, addDoc } from "firebase/firestore";
+import React, { useState } from "react";
+
 
 const formSchema = z.object({
   subCode: z.string().min(3, {
@@ -15,7 +19,20 @@ const formSchema = z.object({
         message: "Subject name must contain more than 3 characters "
     })
 })
+// Function to add a subject to the specified collection
+const addSubject = async (collectionName:any, documentData:any) => {
+  try {
+    const docRef = await addDoc(collection(db, collectionName), documentData);
+    console.log("Document written with ID: ", docRef.id);
+  } catch (error) {
+    console.error("Error adding document: ", error);
+  }
+};
 export default function CreateSubjectsForm() {
+  const [formData, setFormdata] = useState({
+    subCode: "",
+    subName:""
+  })
      const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
