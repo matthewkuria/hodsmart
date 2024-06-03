@@ -110,7 +110,7 @@ export default function CreateSubjectsForm() {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit">Save</Button>
         </form>
           <div className="flex pb-2 px-2 items-end justify-end -mt-10">
           <Button className="bg-red-500"><Link href="/dashboard/subjects">Cancel</Link></Button>
