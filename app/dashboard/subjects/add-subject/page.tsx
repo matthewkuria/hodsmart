@@ -1,8 +1,5 @@
-
 export default function AddSubjectsForm() {
     return (
-        <Form>
-            
-        </Form>
+        <h1>Add A subject Here</h1>
     )
 }

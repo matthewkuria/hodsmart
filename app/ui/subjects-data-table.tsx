@@ -35,6 +35,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import Link from "next/link"
 
 const data: Payment[] = [
   {
@@ -232,6 +233,9 @@ export function SubjectsDataTable() {
               })}
           </DropdownMenuContent>
         </DropdownMenu>
+        <Button>
+              <Link href="/dashboard/subjects/add-subject" >Add</Link>    
+        </Button>
       </div>
       <div className="rounded-md border">
         <Table>
