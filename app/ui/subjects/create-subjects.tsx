@@ -1,6 +1,6 @@
 "use client"
 import { Button } from "@/components/ui/button";
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Form, FormControl,  FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -9,6 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { db } from "../../firebaseConfig"
 import { collection, addDoc } from "firebase/firestore";
 import React, { useState } from "react";
+import Link from "next/link";
 
 
 const formSchema = z.object({
@@ -64,7 +65,7 @@ export default function CreateSubjectsForm() {
     });
  }
     return (
-    <Form {...form}>
+    <Form {...form} >
       <form onSubmit={handleSubmit} className="space-y-8 max-w-md">
         <FormField
           control={form.control}
@@ -109,7 +110,10 @@ export default function CreateSubjectsForm() {
           )}
         />
         <Button type="submit">Submit</Button>
-      </form>
+        </form>
+          <div className="flex pb-2 px-2 items-end justify-end -mt-10">
+          <Button className="bg-red-500"><Link href="/dashboard/subjects">Cancel</Link></Button>
+        </div>
     </Form>
   )
 }
