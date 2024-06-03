@@ -8,7 +8,9 @@ import { zodResolver } from "@hookform/resolvers/zod"
 
 
 const formSchema = z.object({
-    subCode: z.string(),
+  subCode: z.string().min(3, {
+      message: "Subject must be more than 3 numbers"
+    }),
     subName: z.string().min(3, {
         message: "Subject name must contain more than 3 characters "
     })
@@ -38,6 +40,19 @@ export default function CreateSubjectsForm() {
               <FormLabel>Subject Code</FormLabel>
               <FormControl>
                 <Input placeholder="subject code" {...field} />
+              </FormControl>              
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="subName"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Subject Name</FormLabel>
+              <FormControl>
+                <Input placeholder="Name of the subject" {...field} />
               </FormControl>              
               <FormMessage />
             </FormItem>
