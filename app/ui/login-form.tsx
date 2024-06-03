@@ -82,7 +82,7 @@ export default function LoginForm() {
             <FormItem>
                 <FormLabel>PassWord</FormLabel>
                     <FormControl>
-                 <Input placeholder="password"
+                 <Input type="password" placeholder="password"
                    value={field.value} 
                    onChange={(e) => {
                      field.onChange(e);
