@@ -1,3 +1,4 @@
+"use client"
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -28,7 +29,7 @@ export default function CreateSubjectsForm() {
   }
     return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 max-w-md">
         <FormField
           control={form.control}
           name="subCode"
@@ -37,10 +38,7 @@ export default function CreateSubjectsForm() {
               <FormLabel>Subject Code</FormLabel>
               <FormControl>
                 <Input placeholder="subject code" {...field} />
-              </FormControl>
-              <FormDescription>
-                This is your public display name.
-              </FormDescription>
+              </FormControl>              
               <FormMessage />
             </FormItem>
           )}
