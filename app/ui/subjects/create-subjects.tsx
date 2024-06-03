@@ -65,7 +65,8 @@ export default function CreateSubjectsForm() {
     });
  }
     return (
-    <Form {...form} >
+      <Form {...form} >
+        <div className="max-w-md ">
       <form onSubmit={handleSubmit} className="space-y-8 max-w-md">
         <FormField
           control={form.control}
@@ -113,7 +114,9 @@ export default function CreateSubjectsForm() {
         </form>
           <div className="flex pb-2 px-2 items-end justify-end -mt-10">
           <Button className="bg-red-500"><Link href="/dashboard/subjects">Cancel</Link></Button>
-        </div>
-    </Form>
+          </div>
+          </div>
+      </Form>
+      
   )
 }
