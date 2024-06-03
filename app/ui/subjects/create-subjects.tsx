@@ -29,7 +29,7 @@ const addSubject = async (collectionName:any, documentData:any) => {
   }
 };
 export default function CreateSubjectsForm() {
-  const [formData, setFormdata] = useState({
+  const [formData, setFormData] = useState({
     subCode: "",
     subName:""
   })
@@ -40,23 +40,48 @@ export default function CreateSubjectsForm() {
       subName: "",
     },
      })
-    
-    function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values)
-  }
+   // create handleChange function to collect data when there is a change
+  const handleChange = (e: any) => {    
+    const { name, value } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value
+    }));
+  };
+  const handleSubmit = async(e: any) => {
+    e.preventDefault();
+       const documentData = {
+         subCode: formData.subCode,
+         subName: formData.subName
+    };
+    const collectionName = 'subjects';  // Specify your collection name here
+     await addSubject(collectionName, documentData);    
+      alert("Subject added successfully!")    
+    // Reset the form
+    setFormData({
+      subCode: "",
+      subName: ""
+    });
+ }
     return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 max-w-md">
+      <form onSubmit={handleSubmit} className="space-y-8 max-w-md">
         <FormField
           control={form.control}
           name="subCode"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Subject Code</FormLabel>
+              <FormLabel htmlFor="subCode">Subject Code</FormLabel>
               <FormControl>
-                <Input placeholder="subject code" {...field} />
+                <Input
+                  placeholder="subject code"
+                  type="text"
+                  name="subCode"
+                  id="subCode"
+                  onChange={handleChange }
+                  value={formData.subCode}
+                  required
+                />
               </FormControl>              
               <FormMessage />
             </FormItem>
@@ -67,9 +92,17 @@ export default function CreateSubjectsForm() {
           name="subName"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Subject Name</FormLabel>
+              <FormLabel htmlFor="subName">Subject Name</FormLabel>
               <FormControl>
-                <Input placeholder="Name of the subject" {...field} />
+                <Input
+                  placeholder="Name of the subject"
+                  type="text"
+                  name="subName"
+                  id="subName"
+                  onChange={handleChange }
+                  value={formData.subName}
+                  required
+                />
               </FormControl>              
               <FormMessage />
             </FormItem>
