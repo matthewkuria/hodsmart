@@ -1,5 +1,6 @@
 "use client"
 import { db } from "@/app/firebaseConfig"
+import { doc, deleteDoc } from "firebase/firestore";
 import useFetchSubjectData from "@/app/lib/subject-data"
 import * as React from "react"
 import {
@@ -41,8 +42,14 @@ import Link from "next/link"
 
 
 export type Subject = {
+  id: string,
   subCode: string,
   subName: string
+}
+async function deleteSubject(id: string) {
+  const docRef = doc(db, "subjects", id)
+  await deleteDoc(docRef)
+  alert("The subjects record deleted!")
 }
 
 export const columns: ColumnDef<Subject>[] = [
@@ -114,7 +121,10 @@ export const columns: ColumnDef<Subject>[] = [
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem className="text-blue-500">Modify </DropdownMenuItem>
-            <DropdownMenuItem className="text-red-500">Delete</DropdownMenuItem>
+            <DropdownMenuItem
+              className="text-red-500"
+              onClick={()=>deleteSubject(subject.id)}
+            >Delete</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       )

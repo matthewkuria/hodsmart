@@ -55,7 +55,6 @@ async function deleteTeacher(id: string) {
   await deleteDoc(docRef)
   alert("The teacher record deleted!")
 }
-
 export const columns: ColumnDef<Teacher>[] = [
   {
     id: "select",
