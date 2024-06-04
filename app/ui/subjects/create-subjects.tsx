@@ -56,8 +56,8 @@ export default function CreateSubjectsForm() {
          subName: formData.subName
     };
     const collectionName = 'subjects';  // Specify your collection name here
-     await addSubject(collectionName, documentData);    
-      alert("Subject added successfully!")    
+    alert("Subject added successfully!") 
+     await addSubject(collectionName, documentData);
     // Reset the form
     setFormData({
       subCode: "",
