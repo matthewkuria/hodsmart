@@ -48,8 +48,8 @@ export type Subject = {
 }
 async function deleteSubject(id: string) {
   const docRef = doc(db, "subjects", id)
-  await deleteDoc(docRef)
   alert("The subjects record deleted!")
+  await deleteDoc(docRef)  
 }
 
 export const columns: ColumnDef<Subject>[] = [
@@ -95,7 +95,7 @@ export const columns: ColumnDef<Subject>[] = [
         </Button>
       )
     },
-    cell: ({ row }) => <div className="lowercase">{row.getValue("subName")}</div>,
+    cell: ({ row }) => <div className="uppercase font-bold">{row.getValue("subName")}</div>,
   },
   
   {
