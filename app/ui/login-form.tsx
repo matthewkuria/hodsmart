@@ -47,7 +47,7 @@ export default function LoginForm() {
       setError(getErrorMessage(error.code))
       console.error("Error signing in:",error.code);
     }    
-    console.log(values) 
+    // console.log(values) 
     
   }
    // Function to map Firebase error codes to user-friendly messages
