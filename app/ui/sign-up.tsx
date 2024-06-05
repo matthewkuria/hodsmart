@@ -65,7 +65,7 @@ export default function SignUpForm() {
         {error && <div className="text-red-500">{error }</div >}
          <form onSubmit={form.handleSubmit(handleSubmit)} className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
          <h1 className={`${lusitana.className} mb-3 text-2xl`}>
-            Please log in to continue.
+            Please create an account to continue.
          </h1>
            <FormField
              control={form.control}
@@ -107,13 +107,13 @@ export default function SignUpForm() {
            )}
             />
           <div className="mt-5 flex items-center justify-end">              
-            <Button type="submit">Login</Button>  
+            <Button type="submit">Sign Up</Button>  
             <Button
               type="button"
-              onClick={() => router.push('/signUp')}
+              onClick={() => router.push('/login')}
               className="bg-transparent  text-black hover:bg-transparent "
             >
-                Don't have an account?<span className="underline text-red-500">Sign Up</span> 
+                Already have an account?<span className="underline text-red-500">Login</span> 
               </Button>
           </div>
          </form>

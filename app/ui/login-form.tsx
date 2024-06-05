@@ -110,7 +110,7 @@ export default function LoginForm() {
             <Button type="submit">Login</Button>  
             <Button
               type="button"
-              onClick={() => router.push('/signUp')}
+              onClick={() => router.push('/login/signup')}
               className="bg-transparent  text-black hover:bg-transparent "
             >
                 Don't have an account?<span className="underline text-red-500">Sign Up</span> 
