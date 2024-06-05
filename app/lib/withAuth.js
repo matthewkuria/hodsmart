@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import useAuth from './useAuth';
-import { BallTriangle } from 'react-loader-spinner'
+import { CirclesWithBar } from 'react-loader-spinner'
 
 const withAuth = (WrappedComponent) => {
   return (props) => {
@@ -16,19 +16,22 @@ const withAuth = (WrappedComponent) => {
       }
     }, [user, router]);
 
-    if (user === null) {
+      if (user === null) {
+         // You can return a loading spinner or null while checking authentication
         return (
-          <BallTriangle
-            height={100}
-            width={100}
-            radius={5}
+          <CirclesWithBar
+            height="100"
+            width="100"
             color="#4fa94d"
-            ariaLabel="ball-triangle-loading"
+            outerCircleColor="#4fa94d"
+            innerCircleColor="#4fa94d"
+            barColor="#4fa94d"
+            ariaLabel="circles-with-bar-loading"
             wrapperStyle={{}}
             wrapperClass=""
             visible={true}
-        />
-      ) // You can return a loading spinner or null while checking authentication
+            />
+      )
     }
 
     return <WrappedComponent {...props} />;
