@@ -1,18 +1,28 @@
 "use client"
 
+import { Button } from "@/components/ui/button"
 import { auth } from "../firebaseConfig"
 import Charts from "../ui/dashboard/home/charts"
 import GreetingsComponent from "../ui/dashboard/home/greetings"
 import SearchBar from "../ui/dashboard/home/search-component"
 import DashboardStatistics from "../ui/dashboard/home/statistics"
 import withAuth from "@/app/lib/withAuth"
+import { PowerIcon } from '@heroicons/react/24/outline';
+
 
 const Page = () => {
-    const handleSignOut = async () => {
+   const handleSignOut = async () => {
     await auth.signOut();
   };
     return(
         <main className="bg-slate-100">
+            <button className="flex h-[48px] w-full grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-red-600 md:flex-none md:justify-start md:p-2 md:px-3">            
+            <div className="hidden md:block">              
+              <Button  
+              onClick={() => handleSignOut}  
+              ><PowerIcon className="w-6" />Sign Out</Button>
+            </div>
+          </button>
             <SearchBar />
             <GreetingsComponent />
             <div className="flex flex-col">
@@ -24,4 +34,4 @@ const Page = () => {
         </main>
     )
 }
-export default withAuth(Page)
+export default Page
