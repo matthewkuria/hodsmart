@@ -4,8 +4,9 @@ import Charts from "../ui/dashboard/home/charts"
 import GreetingsComponent from "../ui/dashboard/home/greetings"
 import SearchBar from "../ui/dashboard/home/search-component"
 import DashboardStatistics from "../ui/dashboard/home/statistics"
+import withAuth from "@/app/lib/withAuth"
 
-export default function Page() {
+const Page =() => {
     return(
         <main className="bg-slate-100">
             <SearchBar />
@@ -19,3 +20,4 @@ export default function Page() {
         </main>
     )
 }
+export default withAuth(Page)
