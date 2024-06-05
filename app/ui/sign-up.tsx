@@ -13,7 +13,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../firebaseConfig";
 import {useRouter} from "next/navigation";
 import { useState } from "react";
@@ -29,20 +29,21 @@ export default function SignUpForm() {
   const router = useRouter()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [displayName, setDisplayName] = useState('');
+  const [displayName, setDisplayName] = useState("");
   const [error, setError] = useState("")
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
           emailAddress: "",
             password: "",
-            displayName: "user"
+            displayName: ""
         },
       })
         //  Define a submit handler.
   const handleSubmit = async(values: z.infer<typeof formSchema>) => {
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+       await updateProfile(userCredential.user, { displayName });
       // console.log("User signed in:", userCredential.user);
       console.log("Sign Up successful")
       router.push("/login"); // Redirect to login
@@ -50,7 +51,7 @@ export default function SignUpForm() {
       setError(getErrorMessage(error.code))
       console.error("Error signing in:",error.code);
     }    
-    // console.log(values) 
+    console.log(values) 
     
   }
    // Function to map Firebase error codes to user-friendly messages

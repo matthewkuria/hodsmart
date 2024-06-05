@@ -11,7 +11,7 @@ export default function GreetingsComponent() {
             {user ? (
                 <>
                 <div className="flex flex-col items-center text-white p-5">
-                        <h1 className=" text-xl font-bold">Welcome back,{user.email}</h1>
+                <h1 className=" text-xl font-bold">Welcome back,{user.displayName}</h1>
                 <p className="text-xs mt-3">We know that it takes time and love to choose us.</p>
             </div>
             <div className="">
