@@ -44,12 +44,21 @@ export default function LoginForm() {
       console.log("Sign in successful")
       router.push("/dashboard"); // Redirect to home or dashboard page
     } catch (error: any) {
-      setError(error.message)
-      console.error("Error signing in:", error.code, error.message);
+      setError(getErrorMessage(error.code))
+      console.error("Error signing in:",error.code);
     }    
     console.log(values) 
     
   }
+   // Function to map Firebase error codes to user-friendly messages
+  const getErrorMessage = (code: any) => {
+    switch (code) {
+      case 'auth/invalid-credential':
+        return 'Incorrect user name or password. Please try again.';     
+      default:
+        return 'An error occurred. Please try again.';
+    }
+  };
      
     return(     
       <Form {...form}>
