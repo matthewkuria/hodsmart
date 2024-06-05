@@ -28,6 +28,7 @@ export default function LoginForm() {
   const router = useRouter()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("")
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -42,7 +43,8 @@ export default function LoginForm() {
       // console.log("User signed in:", userCredential.user);
       console.log("Sign in successful")
       router.push("/dashboard"); // Redirect to home or dashboard page
-    } catch (error:any) {
+    } catch (error: any) {
+      setError(error.message)
       console.error("Error signing in:", error.code, error.message);
     }    
     console.log(values) 
@@ -50,7 +52,8 @@ export default function LoginForm() {
   }
      
     return(     
-         <Form {...form}>
+      <Form {...form}>
+        {error && <div className="text-red-500">{error }</div >}
          <form onSubmit={form.handleSubmit(handleSubmit)} className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
          <h1 className={`${lusitana.className} mb-3 text-2xl`}>
             Please log in to continue.
