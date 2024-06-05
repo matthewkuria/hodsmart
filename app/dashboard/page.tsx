@@ -10,9 +10,11 @@ import withAuth from "@/app/lib/withAuth"
 import { PowerIcon } from '@heroicons/react/24/outline';
 import {useRouter} from "next/navigation"
 import Avatar from 'react-avatar';
+import { useState } from "react"
 
 const Page = () => {
-    const router = useRouter()
+  const router = useRouter()
+  const [isShown, setIshown] = useState(false)
     const handleSignOut = async () => {
     try { 
         await auth.signOut();
@@ -21,17 +23,24 @@ const Page = () => {
       console.error('Error signing out:', error);
     }
   };
+  function handleClick() {
+     setIshown(prevState => !prevState)
+   }
   return (
     <>
-      
-     <Avatar githubHandle="matthewkuria" size={100} round={true} />
-       <button className="flex h-[48px] w-full grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-red-600 md:flex-none md:justify-start md:p-2 md:px-3">            
-            <div className="hidden md:block">              
+      <div className="flex relative justify-end">
+        <Avatar githubHandle="matthewkuria" size={60} round={true} onClick={handleClick}/>
+      {isShown &&
+        <button className="flex absolute top-5 right-20 h-[48px] w-1/5 grow items-center justify-center rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-red-600 md:flex-none md:justify-start md:p-2 md:px-3">            
+            <div className="block">              
               <Button  
               onClick={handleSignOut}  
               ><PowerIcon className="w-6" />Sign Out</Button>
             </div>
           </button>
+       }
+      </div>
+     
         <main className="bg-slate-100">
            
             <SearchBar />
