@@ -13,7 +13,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebaseConfig";
 import {useRouter} from "next/navigation";
 import { useState } from "react";
@@ -22,27 +22,30 @@ import { useState } from "react";
 
 const formSchema = z.object({
     emailAddress: z.string().email(),
-    password: z.string().min(4).max(16)
+    password: z.string().min(4).max(16),
+    displayName: z.string().min(3)
   })
 export default function SignUpForm() { 
   const router = useRouter()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [displayName, setDisplayName] = useState('');
   const [error, setError] = useState("")
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
           emailAddress: "",
-          password:"",
+            password: "",
+            displayName: "user"
         },
       })
         //  Define a submit handler.
   const handleSubmit = async(values: z.infer<typeof formSchema>) => {
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       // console.log("User signed in:", userCredential.user);
-      console.log("Sign in successful")
-      router.push("/dashboard"); // Redirect to home or dashboard page
+      console.log("Sign Up successful")
+      router.push("/login"); // Redirect to login
     } catch (error: any) {
       setError(getErrorMessage(error.code))
       console.error("Error signing in:",error.code);
@@ -53,8 +56,12 @@ export default function SignUpForm() {
    // Function to map Firebase error codes to user-friendly messages
   const getErrorMessage = (code: any) => {
     switch (code) {
-      case 'auth/invalid-credential':
-        return 'Incorrect user name or password. Please try again.';     
+      case 'auth/email-already-in-use':
+        return 'Email is already in use.';
+      case 'auth/invalid-email':
+        return 'Invalid email address.';
+      case 'auth/weak-password':
+        return 'Password is too weak.';
       default:
         return 'An error occurred. Please try again.';
     }
@@ -69,10 +76,30 @@ export default function SignUpForm() {
          </h1>
            <FormField
              control={form.control}
-             name="emailAddress"
+             name="displayName"
             render={({ field }) => (               
                <FormItem>
                  <FormLabel>User Name</FormLabel>
+                 <FormControl>
+                   <Input placeholder="Display Name"
+                    value={field.value}  
+                    onChange={(e) => {
+                      // call field.onchange handler
+                      field.onChange(e);
+                      setDisplayName(e.target.value)
+                    }}
+                   />
+                 </FormControl>                                 
+                 <FormMessage />
+               </FormItem>
+             )}
+           />
+           <FormField
+             control={form.control}
+             name="emailAddress"
+            render={({ field }) => (               
+               <FormItem>
+                 <FormLabel>Email Address</FormLabel>
                  <FormControl>
                    <Input placeholder="Email Address"
                     value={field.value}  
