@@ -41,4 +41,4 @@ const Page = () => {
         </main>
     )
 }
-export default withAuth(Page)
+export default Page;
