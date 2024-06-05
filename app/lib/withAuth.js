@@ -1,41 +1,33 @@
-
+// hooks/withAuth.js
 
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
 import useAuth from './useAuth';
-import { CirclesWithBar } from 'react-loader-spinner'
+import { useEffect } from 'react';
 
 const withAuth = (WrappedComponent) => {
-  return (props) => {
-    const user = useAuth();
+  const WrappedComponentWithAuth = (props) => {
+    const { user, loading } = useAuth();
     const router = useRouter();
 
     useEffect(() => {
-      if (user === null) {
+      if (!loading && !user) {
         router.push('/login'); // Redirect to sign-in page if not authenticated
       }
-    }, [user, router]);
+    }, [user, loading, router]);
 
-      if (user === null) {
-         // You can return a loading spinner or null while checking authentication
+    if (loading) {
         return (
-          <CirclesWithBar
-            height="100"
-            width="100"
-            color="#4fa94d"
-            outerCircleColor="#4fa94d"
-            innerCircleColor="#4fa94d"
-            barColor="#4fa94d"
-            ariaLabel="circles-with-bar-loading"
-            wrapperStyle={{}}
-            wrapperClass=""
-            visible={true}
-            />
-      )
+          Loading
+      ) // Show loading spinner while checking authentication
     }
 
     return <WrappedComponent {...props} />;
   };
+
+  // Set display name for the component
+  WrappedComponentWithAuth.displayName = `withAuth(${WrappedComponent.displayName || WrappedComponent.name || 'Component'})`;
+
+  return WrappedComponentWithAuth;
 };
 
 export default withAuth;
