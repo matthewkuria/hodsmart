@@ -113,7 +113,7 @@ export default function LoginForm() {
               onClick={() => router.push('/login/signup')}
               className="bg-transparent  text-black hover:bg-transparent "
             >
-                Don't have an account?<span className="underline text-red-500">Sign Up</span> 
+                Do not have an account?<span className="underline text-red-500">Sign Up</span> 
               </Button>
           </div>
          </form>
