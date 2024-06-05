@@ -24,7 +24,7 @@ const formSchema = z.object({
     emailAddress: z.string().email(),
     password: z.string().min(4).max(16)
   })
-export default function LoginForm() { 
+export default function SignUpForm() { 
   const router = useRouter()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
