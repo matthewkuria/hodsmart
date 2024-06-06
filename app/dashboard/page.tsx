@@ -40,8 +40,13 @@ const Page = () => {
         </div>
         <Avatar githubHandle="matthewkuria" size="60" round={true} onClick={handleClick}/>
       {isShown &&
-          <div className="absolute top-5 right-20 bg-slate-300 w-1/2">
-             <CameraIcon className="w-6" />
+          <div className="absolute top-5 right-20 bg-slate-300 rounded-md p-5">
+            <div className="relative w-20">
+              <Avatar githubHandle="matthewkuria" size="60" round={true} onClick={handleClick} />
+              <div className="">
+                <CameraIcon className="w-6 absolute  right-4 bottom-0 fill-blue-500 bg-white rounded" />
+              </div>
+            </div>             
             <button className="flex  h-[48px] w-1/5 grow items-center justify-center rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-red-600 md:flex-none md:justify-start md:p-2 md:px-3">            
             <div className="block">              
               <Button  
