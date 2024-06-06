@@ -7,14 +7,18 @@ import Charts from "../ui/dashboard/home/charts"
 import GreetingsComponent from "../ui/dashboard/home/greetings"
 import SearchBar from "../ui/dashboard/home/search-component"
 import DashboardStatistics from "../ui/dashboard/home/statistics"
-import withAuth from "@/app/lib/withAuth"
 import { PowerIcon } from '@heroicons/react/24/outline';
 import {useRouter} from "next/navigation"
 import Avatar from 'react-avatar';
 import { useState } from "react"
-import { number } from "zod"
 import { CameraIcon } from "@heroicons/react/24/solid"
 import { SkeletonCard } from "../ui/skeletons/loadingTeacherSkeleton";
+import { z } from "zod";
+
+const formSchema = z.object({
+  dislayName: z.string().max(2),
+  
+})
 
 const Page = () => {
   const user: any = useAuth();
@@ -44,9 +48,12 @@ const Page = () => {
       {isShown &&
           <div className="absolute top-5 right-20 bg-slate-300 rounded-md p-5">
             <div className="relative w-20">
-              <Avatar githubHandle="matthewkuria" size="60" round={true} onClick={handleClick} />
+              <Avatar githubHandle="matthewkuria" size="60" round={true} />
               <div className="">
-                <CameraIcon className="w-6 absolute  right-4 bottom-0 fill-blue-500 bg-white rounded" />
+                <CameraIcon
+                  className="w-6 absolute  right-4 bottom-0 fill-blue-500 bg-white rounded"
+                   onClick={handleClick}
+                />
               </div>
             </div>             
             <button className="flex  h-[48px] w-1/5 grow items-center justify-center rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-red-600 md:flex-none md:justify-start md:p-2 md:px-3">            
