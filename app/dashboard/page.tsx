@@ -35,13 +35,16 @@ const Page = () => {
       <div className="flex relative justify-end">
         <Avatar githubHandle="matthewkuria" size="60" round={true} onClick={handleClick}/>
       {isShown &&
-        <button className="flex absolute top-5 right-20 h-[48px] w-1/5 grow items-center justify-center rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-red-600 md:flex-none md:justify-start md:p-2 md:px-3">            
+          <div className="absolute top-5 right-20 bg-slate-300 w-full">
+            
+            <button className="flex  h-[48px] w-1/5 grow items-center justify-center rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-red-600 md:flex-none md:justify-start md:p-2 md:px-3">            
             <div className="block">              
               <Button  
               onClick={handleSignOut}  
               ><PowerIcon className="w-6" />Sign Out</Button>
             </div>
           </button>
+        </div>
        }
       </div>
      
