@@ -12,6 +12,7 @@ import {useRouter} from "next/navigation"
 import Avatar from 'react-avatar';
 import { useState } from "react"
 import { number } from "zod"
+import { CameraIcon } from "@heroicons/react/24/solid"
 
 const Page = () => {
   
@@ -33,10 +34,14 @@ const Page = () => {
     
     <>
       <div className="flex relative justify-end">
+        <div className="">
+          <h1 className="font-bold">User Name</h1>
+          <p className="text-xs text-slate-300">Email Address</p>
+        </div>
         <Avatar githubHandle="matthewkuria" size="60" round={true} onClick={handleClick}/>
       {isShown &&
-          <div className="absolute top-5 right-20 bg-slate-300 w-full">
-            
+          <div className="absolute top-5 right-20 bg-slate-300 w-1/2">
+             <CameraIcon className="w-6" />
             <button className="flex  h-[48px] w-1/5 grow items-center justify-center rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-red-600 md:flex-none md:justify-start md:p-2 md:px-3">            
             <div className="block">              
               <Button  
