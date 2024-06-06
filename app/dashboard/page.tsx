@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { auth } from "../firebaseConfig"
+import useAuth from "@/app/lib/useAuth";
 import Charts from "../ui/dashboard/home/charts"
 import GreetingsComponent from "../ui/dashboard/home/greetings"
 import SearchBar from "../ui/dashboard/home/search-component"
@@ -13,9 +14,10 @@ import Avatar from 'react-avatar';
 import { useState } from "react"
 import { number } from "zod"
 import { CameraIcon } from "@heroicons/react/24/solid"
+import { SkeletonCard } from "../ui/skeletons/loadingTeacherSkeleton";
 
 const Page = () => {
-  
+  const user: any = useAuth();
   const router = useRouter()
   const [isShown, setIshown] = useState(false)
     const handleSignOut = async () => {
@@ -32,11 +34,11 @@ const Page = () => {
  
   return (
     
-    <>
+    <>{user? (
       <div className="flex relative justify-end">
         <div className="">
-          <h1 className="font-bold">User Name</h1>
-          <p className="text-xs text-slate-300">Email Address</p>
+          <h1 className="font-bold">{ user.displayName}</h1>
+          <p className="text-xs font-semibold text-slate-300">{user.email }</p>
         </div>
         <Avatar githubHandle="matthewkuria" size="60" round={true} onClick={handleClick}/>
       {isShown &&
@@ -56,7 +58,12 @@ const Page = () => {
           </button>
         </div>
        }
-      </div>
+      </div>) : (
+         <>
+                        <SkeletonCard />
+                    </>
+      )
+      }
      
         <main className="bg-slate-100">
            
