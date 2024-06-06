@@ -13,6 +13,7 @@ import Avatar from 'react-avatar';
 import { useState } from "react"
 import { CameraIcon } from "@heroicons/react/24/solid"
 import { SkeletonCard } from "../ui/skeletons/loadingTeacherSkeleton";
+import Link from "next/link";
 
 
 const Page = () => {
@@ -42,7 +43,7 @@ const Page = () => {
         </div>
         <Avatar githubHandle="matthewkuria" size="60" round={true} onClick={handleClick}/>
       {isShown &&
-          <div className="absolute top-5 right-20 bg-slate-300 rounded-md p-5">
+          <div className="absolute top-16 right-0 bg-slate-300 rounded-md p-5">
             <div className="relative w-20">
               <Avatar githubHandle="matthewkuria" size="60" round={true} />
               <div className="">
@@ -51,12 +52,16 @@ const Page = () => {
                    onClick={handleClick}
                 />
               </div>
-            </div>             
-            <button className="flex  h-[48px] w-1/5 grow items-center justify-center rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-red-600 md:flex-none md:justify-start md:p-2 md:px-3">            
+            </div>  
+            <div className=" py-5">
+               <Link href="/dashboard/settings" ><button className="bg-white px-2 rounded-sm hover:font-semibold">Edit Profile</button></Link>
+            </div>
+            <button className="flex  w-full grow items-center justify-center rounded-md text-sm font-medium  md:flex-none md:justify-start md:p-2 md:px-0">            
             <div className="block">              
-              <Button  
-              onClick={handleSignOut}  
-              ><PowerIcon className="w-6" />Sign Out</Button>
+                <Button 
+                  className="bg-transparent text-black hover:bg-red-500 hover:text-white"    
+                  onClick={handleSignOut}  
+              ><PowerIcon className="w-6" />Log Out</Button>
             </div>
           </button>
         </div>
