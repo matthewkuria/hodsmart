@@ -13,14 +13,10 @@ import Avatar from 'react-avatar';
 import { useState } from "react"
 import { CameraIcon } from "@heroicons/react/24/solid"
 import { SkeletonCard } from "../ui/skeletons/loadingTeacherSkeleton";
-import { z } from "zod";
 
-const formSchema = z.object({
-  dislayName: z.string().max(2),
-  
-})
 
 const Page = () => {
+  
   const user: any = useAuth();
   const router = useRouter()
   const [isShown, setIshown] = useState(false)
