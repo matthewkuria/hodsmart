@@ -43,23 +43,18 @@ const Page = () => {
         </div>
         <Avatar githubHandle="matthewkuria" size="60" round={true} onClick={handleClick}/>
       {isShown &&
-          <div className="absolute top-16 right-0 bg-slate-300 rounded-md p-5">
-            <div className="relative w-20">
-              <Avatar githubHandle="matthewkuria" size="60" round={true} />
-              <div className="">
-                <CameraIcon
-                  className="w-6 absolute  right-4 bottom-0 fill-blue-500 bg-white rounded"
-                   onClick={handleClick}
-                />
-              </div>
-            </div>  
+          <div className="absolute top-16 right-0 bg-slate-200 rounded-md p-4">  
+           <div className="">
+          <h1 className="font-bold text-white pr-5 py-1 rounded-md bg-blue-500">{ user.displayName}</h1>
+          <p className="text-xs font-semibold">{user.email }</p>
+        </div>  
             <div className=" py-5">
-               <Link href="/dashboard/settings" ><button className="bg-white px-2 rounded-sm hover:font-semibold">Edit Profile</button></Link>
+               <Link href="/dashboard/settings" ><button className="hover:text-blue-500 px-2 rounded-sm hover:font-semibold">Edit Profile</button></Link>
             </div>
             <button className="flex  w-full grow items-center justify-center rounded-md text-sm font-medium  md:flex-none md:justify-start md:p-2 md:px-0">            
             <div className="block">              
                 <Button 
-                  className="bg-transparent text-black hover:bg-red-500 hover:text-white"    
+                  className="bg-slate-400 text-black hover:bg-red-500 hover:text-white"    
                   onClick={handleSignOut}  
               ><PowerIcon className="w-6" />Log Out</Button>
             </div>
