@@ -1,4 +1,4 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a Next.js, Typescript,Tailwind CSS and Firebase project.The main aim of the project is to build a platform which allows teachers esp head of departments to be allocating subjects workload to their members seamlessly without the need of papers.
 
 ## Getting Started
 
