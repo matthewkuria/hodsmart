@@ -61,7 +61,13 @@ export default function Settings() {
         return 'An error occurred. Please try again.';
     }
   };
-    return (
+  function handleClick() {
+    
+  }
+  return (
+    <>
+      <Avatar githubHandle="matthewkuria" size="60" round={true} onClick={handleClick}/>
+
         <Form {...form}>
             {error && <div className="text-red-500">{error }</div >}
             <form onSubmit={form.handleSubmit(handleSubmit)} className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
@@ -131,6 +137,7 @@ export default function Settings() {
                 <Button type="submit">Save and continue</Button>                 
               </div>
             </form>
-          </Form>
+      </Form>
+      </>
     )
 }
