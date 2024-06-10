@@ -11,6 +11,8 @@ import { useForm } from "react-hook-form";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import router from "next/router";
 import { auth } from "@/app/firebaseConfig";
+import Avatar from 'react-avatar';
+
 
 
 const formSchema = z.object({
