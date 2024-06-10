@@ -21,11 +21,12 @@ const formSchema = z.object({
     displayName: z.string().min(3)
   })
 export default function Settings() {
-    const [email, setEmail] = useState("");
+  const [avatar, setAvatar] = useState('https://via.placeholder.com/150');
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [displayName, setDisplayName] = useState("");
   const [error, setError] = useState("")
-    const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
           emailAddress: "",
@@ -61,13 +62,22 @@ export default function Settings() {
         return 'An error occurred. Please try again.';
     }
   };
-  function handleClick() {
-    
-  }
+ const handleAvatarChange = (event:any) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setAvatar(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
   return (
     <>
-      <Avatar githubHandle="matthewkuria" size="60" round={true} onClick={handleClick}/>
-
+        <div className="avatar-container">
+      <img src={avatar} alt="Avatar" className="avatar-image" />
+      <input type="file" accept="image/*" className="avatar-input" onChange={handleAvatarChange} />
+    </div>
         <Form {...form}>
             {error && <div className="text-red-500">{error }</div >}
             <form onSubmit={form.handleSubmit(handleSubmit)} className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
