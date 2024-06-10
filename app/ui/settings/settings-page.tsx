@@ -75,8 +75,8 @@ export default function Settings() {
   return (
     <>
         <div className="avatar-container">
-      <img src={avatar} alt="Avatar" className="avatar-image" />
-      <input type="file" accept="image/*" className="avatar-input" onChange={handleAvatarChange} />
+      <img src={avatar} alt="Avatar" className="cover rounded-lg w-40 h-40" />
+      <input type="file" accept="image/*" className="mt-3" onChange={handleAvatarChange} />
     </div>
         <Form {...form}>
             {error && <div className="text-red-500">{error }</div >}
