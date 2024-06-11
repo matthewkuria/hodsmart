@@ -86,7 +86,7 @@ export default function AddAllocationCard() {
     return (
      <main>
         <Form {...form} >
-            <form onSubmit={handleSubmit} className="md:flex justify-around">
+            <form onSubmit={handleSubmit} className="md:flex justify-around mt-5">
                 <FormField
                     control={form.control}
                     name="teacherName"
