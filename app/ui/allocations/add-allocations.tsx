@@ -86,7 +86,7 @@ export default function AddAllocationCard() {
     return (
      <main>
         <Form {...form} >
-            <form onSubmit={handleSubmit} className="md:flex">
+            <form onSubmit={handleSubmit} className="md:flex justify-around">
                 <FormField
                     control={form.control}
                     name="teacherName"
@@ -99,7 +99,8 @@ export default function AddAllocationCard() {
                             id="teacherName"
                             value={formData.teacherName}
                             onChange={handleChange}
-                             required
+                            required
+                            className="md: mx-5"
                           />
                             
                         </FormControl>                        
