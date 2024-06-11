@@ -11,7 +11,9 @@ const formSchema = z.object({
   teachername: z.string().min(2, {
     message: "Teacher's name must be at least 3 characters.",
   }),
-  
+    items: z.array(z.string()).refine((value) => value.some((item) => item), {
+    message: "You have to select at least one item.",
+  }),
 })
 export default function AddAllocationCard() {
   const [teachername, setTeacherName] = useState("")

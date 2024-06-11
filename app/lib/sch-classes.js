@@ -1,16 +1,30 @@
 const schData = [
-    "1B",
-    "1G",
-    "1Y",
-    "1V",
-    "1W",
-    "1R",
-    "2B",
-    "2G",
-    "2Y",
-    "2V",
-    "2W",
-    "2R",
+    {
+        id: "1b",
+        label: "1B"
+    },
+     {
+        id: "1y",
+        label: "1Y"
+    },
+      {
+        id: "1v",
+        label: "1V"
+    },
+       {
+        id: "1r",
+        label: "1R"
+    },
+      {
+        id: "1w",
+        label: "1W"
+    },
+      {
+        id: "2y",
+        label: "2Y"
+    },
+    
+  
 
 ]
 export default schData;
