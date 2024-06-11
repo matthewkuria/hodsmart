@@ -12,8 +12,9 @@ yarn dev
 pnpm dev
 # or
 bun dev
-##cloning the project
+
 ```
+##cloning the project
 
 
 
