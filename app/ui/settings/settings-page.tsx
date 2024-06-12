@@ -67,7 +67,7 @@ export default function Settings() {
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setAvatar(reader.result);
+        setAvatar("");
       };
       reader.readAsDataURL(file);
     }

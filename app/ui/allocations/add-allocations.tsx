@@ -121,31 +121,31 @@ export default function AddAllocationCard() {
               </div>
               {data.map((subject) => (
                 <FormField
-                  key={subject.id}
+                  key={subject["id"]}
                   control={form.control}
                   name="subjects"
                   render={({ field }) => {
                     return (
                       <FormItem
-                        key={subject.id}
+                        key={subject["id"]}
                         className="flex flex-row items-start space-x-3 space-y-0"
                       >
                         <FormControl>
                           <Checkbox
-                            checked={field.value?.includes(subject.subCode)}
+                            checked={field.value?.includes(subject["subCode"])}
                             onCheckedChange={(checked) => {
                               return checked
-                                ? field.onChange([...field.value, subject.subCode])
+                                ? field.onChange([...field.value, subject["subCode"]])
                                 : field.onChange(
                                     field.value?.filter(
-                                      (value) => value !== subject.subCode
+                                      (value) => value !== subject["subCode"]
                                     )
                                   )
                             }}
                           />
                         </FormControl>
                         <FormLabel className="font-normal">
-                          {subject.subName}
+                          {subject["subName"]}
                         </FormLabel>
                       </FormItem>
                     )
