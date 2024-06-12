@@ -28,7 +28,7 @@ export default function DashboardStatistics() {
              }
         }
         getTeachersCount();
-    },[])
+    },[teachersCount])
     return (
         <main className=" flex justify-between md:flex md:justify-around h-40 md:w-3/4 mt-4 p-3 ">
            <Card className="  items-center rounded-lg  w-[150px] h-[150px] mx-2 md:mx-4 md:p-4  hover:border-blue-500 hover:shadow-lg">
