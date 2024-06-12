@@ -29,6 +29,21 @@ export default function DashboardStatistics() {
              }
         }
         getTeachersCount();
+    }, [teachersCount])
+    // Get the number of subjects in the system
+    useEffect(() => {
+         async  function getSubjectsCount() {
+             try {
+                const subjectsCol = collection(db, 'subjects')
+                const snapshot = await getCountFromServer(subjectsCol);
+                const totalCount = snapshot.data().count;
+                setsubjectsCount(totalCount)
+             }
+             catch (error) {
+                 console.error("Error counting the number of teachers:", error);
+             }
+        }
+        getSubjectsCount();
     },[teachersCount])
     return (
         <main className=" flex justify-between md:flex md:justify-around h-40 md:w-3/4 mt-4 p-3 ">
