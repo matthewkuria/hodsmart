@@ -12,6 +12,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Link } from "lucide-react";
 
 const formSchema = z.object({
   teacherName: z.string().min(2, {
@@ -23,7 +25,10 @@ const formSchema = z.object({
     classesTaught: z.array(z.string()).refine((value) => value.some((item) => item), {
     message: "You have to select at least one class.",
   }),
-  numberOfLessons: z.string()
+  numberOfLessons: z.string({
+    required_error: "Please select the number of lessons.",
+    
+  })
 })
 // Function to add a document to a specified collection
 const addAllocation = async (collectionName:any, documentData:any) => {
@@ -36,6 +41,7 @@ const addAllocation = async (collectionName:any, documentData:any) => {
 };
 
 export default function AddAllocationCard() {
+
   const { data, loading } = useFetchSubjectData(); 
   const [formData, setFormData] = useState({
       teacherName: "",
@@ -49,18 +55,18 @@ export default function AddAllocationCard() {
       teacherName: "",
       classesTaught: [],
       subjects:[],
-      numberOfLessons: "1",
+      numberOfLessons: "",
 
     },
     })
    // create handleChange function to collect data when there is a change
   const handleChange = (e: any) => {    
-    const { name, value } = e.target;
+    const { name, value } = e.target;  
     setFormData((prevFormData) => ({
       ...prevFormData,
       [name]: value
     }));
-    
+      console.log(formData)
   };
     const handleSubmit = async (e:any) => {
     e.preventDefault();
@@ -204,31 +210,37 @@ export default function AddAllocationCard() {
             </FormItem>
           )}
             />
-            <div className="w-full">
-              <Label htmlFor="numberOfLessons"></Label>
-            <select
-              id="numberOfLessons"
-              name="numberOfLessons"
-              value={formData.numberOflessons}
-              onChange={handleChange}
-              required
-            >     
-            <option value="0">--The number of Lessons--</option>  
-              <option value="1" >1</option>
-              <option value="2" >2</option>
-              <option value="3" >3</option>
-              <option value="4" >4</option>
-              <option value="5" >5</option>
-              <option value="6" >6</option>
-              <option value="7" >7</option>
-              <option value="8" >8</option>
-              <option value="9" >9</option>
-              <option value="10" >10</option>
-              
-            </select>
-          </div>
-                    <Button type="submit">Allocate</Button>
-            </form>
+        <FormField
+          control={form.control}
+          name="numberOfLessons"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Number of Lessons</FormLabel>
+              <Select onValueChange={handleChange} defaultValue={formData.numberOflessons}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select the number of lessons" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value="1">1</SelectItem>
+                  <SelectItem value="2">2</SelectItem>
+                  <SelectItem value="3">3</SelectItem>
+                  <SelectItem value="4">4</SelectItem>
+                  <SelectItem value="5">5</SelectItem>
+                  <SelectItem value="6">6</SelectItem>
+                  <SelectItem value="7">7</SelectItem>
+                  <SelectItem value="8">8</SelectItem>
+                  <SelectItem value="9">9</SelectItem>
+                  <SelectItem value="10">10</SelectItem>                  
+                </SelectContent>
+              </Select>              
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+            <Button type="submit">Allocate</Button>
+        </form>
         </Form>
      </main>
  )
