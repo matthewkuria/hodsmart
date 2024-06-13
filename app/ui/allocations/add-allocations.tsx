@@ -1,19 +1,17 @@
 "use client"
-import { db } from "../../firebaseConfig"
+import { db } from "../../firebaseConfig";
 import { collection, addDoc } from "firebase/firestore";
 import useFetchSubjectData from "@/app/lib/subject-data";
-import schData from "@/app/lib/sch-classes"
+import schData from "@/app/lib/sch-classes";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { z } from "zod"
+import { z } from "zod";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Link } from "lucide-react";
 
 const formSchema = z.object({
   teacherName: z.string().min(2, {
@@ -216,7 +214,9 @@ export default function AddAllocationCard() {
           render={({ field }) => (
             <FormItem>
               <FormLabel>Number of Lessons</FormLabel>
-              <Select onValueChange={handleChange} defaultValue={formData.numberOflessons}>
+              <Select                
+                onValueChange={handleChange}
+                defaultValue={formData.numberOflessons}>
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue placeholder="Select the number of lessons" />
