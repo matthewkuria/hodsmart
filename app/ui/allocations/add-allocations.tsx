@@ -47,9 +47,9 @@ export default function AddAllocationCard() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       teacherName: "",
-      classesTaught: ["1b"],
-      subjects:["Eng"],
-      numberOfLessons: "",
+      classesTaught: [],
+      subjects:[],
+      numberOfLessons: "1",
 
     },
     })
