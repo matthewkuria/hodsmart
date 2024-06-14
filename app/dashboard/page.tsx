@@ -40,14 +40,14 @@ const Page = () => {
       <div className="flex relative justify-end">
         <div className="">
           <h1 className="font-bold">{ user.displayName}</h1>
-          <p className="text-xs font-semibold text-slate-300">{user.email }</p>
+          <h5 className="text-xs font-semibold text-slate-300">{user.email }</h5>
         </div>
         <Avatar githubHandle="matthewkuria" size="60" round={true} onClick={handleClick}/>
       {isShown &&
           <div className="absolute top-16 right-0 bg-slate-200 rounded-md p-4">  
            <div className="">
           <h1 className="font-bold text-white pr-5 py-1 rounded-md bg-blue-500">{ user.displayName}</h1>
-          <p className="text-xs font-semibold">{user.email }</p>
+          <h5 className="text-xs font-semibold">{user.email }</h5>
         </div>  
             <div className=" py-5">
                <Link href="/dashboard/settings" ><button className="hover:text-blue-500 px-2 rounded-sm hover:font-semibold">Edit Profile</button></Link>

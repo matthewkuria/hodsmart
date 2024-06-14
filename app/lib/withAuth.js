@@ -5,29 +5,22 @@ import useAuth from './useAuth';
 import { useEffect } from 'react';
 
 const withAuth = (WrappedComponent) => {
-  const WrappedComponentWithAuth = (props) => {
-    const { user, loading } = useAuth();
+  return (props) => {
+    const user = useAuth();
     const router = useRouter();
 
     useEffect(() => {
-      if (!loading && !user) {
-        router.push('/login'); // Redirect to sign-in page if not authenticated
+      if (user === null) {
+        router.push('/signIn'); // Redirect to sign-in page if not authenticated
       }
-    }, [user, loading, router]);
+    }, [user, router]);
 
-    if (loading) {
-        return (
-          loading
-      ) // Show loading spinner while checking authentication
+    if (user === null) {
+      return <h1>Loading...</h1>; // Show loading spinner while checking authentication
     }
 
     return <WrappedComponent {...props} />;
   };
-
-  // Set display name for the component
-  WrappedComponentWithAuth.displayName = `withAuth(${WrappedComponent.displayName || WrappedComponent.name || 'Component'})`;
-
-  return WrappedComponentWithAuth;
 };
 
 export default withAuth;

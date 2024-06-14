@@ -13,7 +13,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebaseConfig";
 import {useRouter} from "next/navigation";
 import { useState } from "react";
@@ -40,7 +40,7 @@ export default function LoginForm() {
   const handleSubmit = async(values: z.infer<typeof formSchema>) => {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      // console.log("User signed in:", userCredential.user);
+      const user = userCredential.user;
       console.log("Sign in successful")
       router.push("/dashboard"); // Redirect to home or dashboard page
     } catch (error: any) {
