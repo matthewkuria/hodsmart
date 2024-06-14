@@ -46,8 +46,9 @@ export default function DashboardStatistics() {
         getSubjectsCount();
     },[teachersCount])
     return (
-        <main className=" flex justify-between md:flex md:justify-around h-40 md:w-3/4 mt-4 p-3 ">
-            <Link href="/dashboard/teachers">
+        <main className=" flex-row md:flex-row justify-between lg:flex lg:justify-around lg:h-40 md:w-3/4 mt-4 p-3 ">
+            <div className=" flex">
+                <Link href="/dashboard/teachers">
            <Card className="  items-center rounded-lg  w-[150px] h-[150px] mx-2 md:mx-4 md:p-4  hover:border-blue-500 hover:shadow-lg">
                 <CardHeader>
                     <CardTitle>Teachers</CardTitle>                   
@@ -81,8 +82,10 @@ export default function DashboardStatistics() {
                 </CardContent>                               
             </Card>
             </Link>
-            <Link href="/dashboard/allocations">
-            <Card className="bg-blue-50  items-center rounded-lg  w-[250px] h-[150px] mx-4 md:p-4  hover:border-blue-500 hover:shadow-lg">
+            </div>
+            <div className="block">
+                <Link href="/dashboard/allocations">
+            <Card className="bg-blue-50 flex items-center rounded-lg  w-[250px] h-[150px] mx-4 md:p-4  hover:border-blue-500 hover:shadow-lg">
                 <CardHeader>
                     <CardTitle>View Subjects allocations</CardTitle>                   
                 </CardHeader>
@@ -98,6 +101,7 @@ export default function DashboardStatistics() {
                 </CardContent>                               
                 </Card>
                 </Link>
+            </div>
         </main>
     )
 }
