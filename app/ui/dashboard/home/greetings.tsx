@@ -4,8 +4,7 @@ import Image from "next/image";
 import { SkeletonCard } from "../../skeletons/loadingTeacherSkeleton";
 
 export default function GreetingsComponent() {
-    const user: any = useAuth();
-    console.log(user)
+    const user: any = useAuth();  
     return (
         <main className=" flex items-center justify-between bg-gradient-to-r from-blue-500 h-40 rounded-lg mt-3">
             {user ? (
