@@ -65,11 +65,11 @@ const data2 = [
 
 export default function SubjectsCharts() {
   return (
-    <main className=" bg-white md:flex">
+    <main className=" bg-white flex-row md:flex justify-center items-center">
           <div className="">
             <h3 className="text-xl font-bold">Teachers distribution</h3>
             <BarChart
-            width={500}
+            width={380}
             height={300}
             data={data}
             margin={{
@@ -88,7 +88,7 @@ export default function SubjectsCharts() {
             <Bar dataKey="female" fill="#82ca9d" />
             </BarChart>
           </div>
-          <div className="mx-2">
+          <div className="md:mx-2">
             <PieChart width={400} height={400}>
                 <Pie
                     dataKey="value"
