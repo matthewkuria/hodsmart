@@ -11,10 +11,11 @@ import DashboardStatistics from "../ui/dashboard/home/statistics"
 import { PowerIcon } from '@heroicons/react/24/outline';
 import {useRouter} from "next/navigation"
 import Avatar from 'react-avatar';
-import { useState } from "react"
+import { Suspense, useState } from "react"
 import { CameraIcon } from "@heroicons/react/24/solid"
 import { SkeletonCard } from "../ui/skeletons/loadingTeacherSkeleton";
 import Link from "next/link";
+import Loading from "./loading";
 
 
 const Page = () => {
@@ -70,7 +71,7 @@ const Page = () => {
       }
      
         <main className="bg-slate-100">
-           
+           <Suspense fallback={<Loading />}>
             <SearchBar />
             <GreetingsComponent />
             <div className="flex flex-col">
@@ -79,6 +80,7 @@ const Page = () => {
                     <Charts />
                 </div>
            </div>
+           </Suspense>
       </main>
       </>
     )
