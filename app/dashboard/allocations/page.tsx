@@ -1,7 +1,9 @@
+import withAuth from "@/app/lib/withAuth";
 import AddAllocationCard from "@/app/ui/allocations/add-allocations";
 
-export default function Page() {
+ const Page =() => {
   return (
       <AddAllocationCard />
     )
   }
+export default withAuth(Page);
