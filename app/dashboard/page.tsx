@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { auth } from "../firebaseConfig"
 import useAuth from "@/app/lib/useAuth";
+import withAuth from "@/app/lib/withAuth"
 import Charts from "../ui/dashboard/home/charts"
 import GreetingsComponent from "../ui/dashboard/home/greetings"
 import SearchBar from "../ui/dashboard/home/search-component"
@@ -82,4 +83,4 @@ const Page = () => {
       </>
     )
 }
-export default Page;
+export default withAuth(Page);

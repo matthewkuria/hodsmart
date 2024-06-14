@@ -17,7 +17,7 @@ const withAuth = (WrappedComponent) => {
 
     if (loading) {
         return (
-          Loading
+          loading
       ) // Show loading spinner while checking authentication
     }
 
