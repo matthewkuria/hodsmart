@@ -5,7 +5,7 @@ export default function Loading() {
         <BounceLoader
            color="hsla(217, 90%, 48%, 1)"
             size={100}
-            speedMultiplier={1}
+            speedMultiplier={5}
         />
     )
 }
