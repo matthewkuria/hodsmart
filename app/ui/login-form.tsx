@@ -17,6 +17,7 @@ import {getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebaseConfig";
 import {useRouter} from "next/navigation";
 import { useState } from "react";
+import BounceLoader from "react-spinners/BounceLoader";
 
 
 
@@ -28,6 +29,7 @@ export default function LoginForm() {
   const router = useRouter()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState("")
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -41,12 +43,18 @@ export default function LoginForm() {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
+        if (loading) {
+          return <BounceLoader color="#36d7b7" /> ; // Show spinner while loading
+        }
       console.log("Sign in successful")
       router.push("/dashboard"); // Redirect to home or dashboard page
     } catch (error: any) {
       setError(getErrorMessage(error.code))
       console.error("Error signing in:",error.code);
-    }    
+    }  
+    finally {
+      setLoading(false);
+    }
     // console.log(values) 
     
   }
