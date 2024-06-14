@@ -1,7 +1,10 @@
+"use client"
+import withAuth from "@/app/lib/withAuth";
 import CreateSubjectsForm from "@/app/ui/subjects/create-subjects";
 
-export default function AddSubjectsForm() {
+const AddSubjectsForm =()=> {
     return (
         <CreateSubjectsForm />
     )
 }
+export default withAuth(AddSubjectsForm);

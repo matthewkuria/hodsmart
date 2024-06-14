@@ -1,7 +1,10 @@
+"use client"
+import withAuth from "@/app/lib/withAuth";
 import Settings from "@/app/ui/settings/settings-page";
 
-export default function SettingsPage() {
+ const SettingsPage =() => {
     return (
         <Settings />
     )
 }
+export default withAuth(SettingsPage);
