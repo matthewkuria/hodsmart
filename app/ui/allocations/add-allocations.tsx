@@ -1,8 +1,8 @@
 "use client"
 import { db } from "../../firebaseConfig";
 import { collection, addDoc } from "firebase/firestore";
-import useFetchSubjectData from "@/app/lib/subject-data";
 import schData from "@/app/lib/sch-classes";
+import subTaughtData from "@/app/lib/subjects-taught";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
@@ -39,13 +39,12 @@ const addAllocation = async (collectionName:any, documentData:any) => {
 };
 
 export default function AddAllocationCard() {
-
-  const { data, loading } = useFetchSubjectData(); 
   const [formData, setFormData] = useState({
       teacherName: "",
-      numberOflessons: "",
-      subjects: "",
-      classesTaught:""
+      subjects: [],
+    classesTaught: [],
+    numberOflessons: "",
+
   })
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -57,7 +56,7 @@ export default function AddAllocationCard() {
 
     },
     })
-   // create handleChange function to collect data when there is a change
+  //  create handleChange function to collect data when there is a change
   const handleChange = (e: any) => {    
     const { name, value } = e.target;  
     setFormData((prevFormData) => ({
@@ -80,8 +79,8 @@ export default function AddAllocationCard() {
     // Reset the form
     setFormData({
       teacherName: "",
-      classesTaught: "",
-      subjects: "",
+      classesTaught: [],
+      subjects: [],
       numberOflessons:""
     });
   };
@@ -105,8 +104,7 @@ export default function AddAllocationCard() {
                             onChange={handleChange}
                             required
                             className="md: mx-5"
-                          />
-                            
+                          />                            
                         </FormControl>                        
                         <FormMessage />
                         </FormItem>
@@ -123,33 +121,34 @@ export default function AddAllocationCard() {
                   Select the Subjects taught.
                 </FormDescription>
               </div>
-              {data.map((subject) => (
+              {subTaughtData.map((subject) => (
                 <FormField
-                  key={subject["id"]}
+                  key={subject.id}
                   control={form.control}
                   name="subjects"
                   render={({ field }) => {
                     return (
                       <FormItem
-                        key={subject["id"]}
+                        key={subject.id}
                         className="flex flex-row items-start space-x-3 space-y-0"
                       >
                         <FormControl>
                           <Checkbox
-                            checked={field.value?.includes(subject["subCode"])}
+                            checked={field.value?.includes(subject.subName)}
                             onCheckedChange={(checked) => {
+                              console.log(field.value)
                               return checked
-                                ? field.onChange([...field.value, subject["subCode"]])
+                                ? field.onChange([...field.value, subject.subName])
                                 : field.onChange(
                                     field.value?.filter(
-                                      (value) => value !== subject["subCode"]
+                                      (value) => value !== subject.id
                                     )
                                   )
                             }}
                           />
                         </FormControl>
                         <FormLabel className="font-normal">
-                          {subject["subName"]}
+                          {subject.subName}
                         </FormLabel>
                       </FormItem>
                     )
