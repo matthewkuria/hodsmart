@@ -215,7 +215,7 @@ export default function AddAllocationCard() {
             <FormItem>
               <FormLabel>Number of Lessons</FormLabel>
               <Select                
-                onValueChange={handleChange}
+                onValueChange={field.onChange}
                 defaultValue={formData.numberOflessons}>
                 <FormControl>
                   <SelectTrigger>
