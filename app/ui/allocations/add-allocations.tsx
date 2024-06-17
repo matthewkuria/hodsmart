@@ -90,7 +90,8 @@ export default function AddAllocationCard() {
      <main>
         <Form {...form} >
             <form onSubmit={handleSubmit} className="md:flex justify-around mt-5">
-                <FormField
+                <div className="">
+                  <FormField
                     control={form.control}
                     name="teacherName"
                     render={({ field }) => (
@@ -109,56 +110,59 @@ export default function AddAllocationCard() {
                         <FormMessage />
                         </FormItem>
                     )}
-            />
-            <FormField
-          control={form.control}
-          name="subjects"
-          render={() => (
-            <FormItem>
-              <div className="mb-4">
-                <FormLabel className="text-base">Subjects</FormLabel>
-                <FormDescription>
-                  Select the Subjects taught.
-                </FormDescription>
-              </div>
-              {subTaughtData.map((subject) => (
-                <FormField
-                  key={subject.id}
-                  control={form.control}
-                  name="subjects"
-                  render={({ field }) => {
-                    return (
-                      <FormItem
-                        key={subject.id}
-                        className="flex flex-row items-start space-x-3 space-y-0"
-                      >
-                        <FormControl>
-                          <Checkbox
-                            checked={field.value?.includes(subject.subName)}
-                            onCheckedChange={(checked) => {
-                              console.log(field.value)
-                              return checked
-                                ? field.onChange([...field.value, subject.subName])
-                                : field.onChange(
-                                    field.value?.filter(
-                                      (value) => value !== subject.id
-                                    )
-                                  )
+                  />
+                </div>
+                <div className="">
+                  <FormField
+                    control={form.control}
+                    name="subjects"
+                    render={() => (
+                      <FormItem>
+                        <div className="mb-4">
+                          <FormLabel className="text-base">Subjects</FormLabel>
+                          <FormDescription>
+                            Select the Subjects taught.
+                          </FormDescription>
+                        </div>
+                        {subTaughtData.map((subject) => (
+                          <FormField
+                            key={subject.id}
+                            control={form.control}
+                            name="subjects"
+                            render={({ field }) => {
+                              return (
+                                <FormItem
+                                  key={subject.id}
+                                  className="flex flex-row items-start space-x-3 space-y-0"
+                                >
+                                  <FormControl>
+                                    <Checkbox
+                                      checked={field.value?.includes(subject.subName)}
+                                      onCheckedChange={(checked) => {
+                                        console.log(field.value)
+                                        return checked
+                                          ? field.onChange([...field.value, subject.subName])
+                                          : field.onChange(
+                                              field.value?.filter(
+                                                (value) => value !== subject.id
+                                              )
+                                            )
+                                      }}
+                                    />
+                                  </FormControl>
+                                  <FormLabel className="font-normal">
+                                    {subject.subName}
+                                  </FormLabel>
+                                </FormItem>
+                              )
                             }}
                           />
-                        </FormControl>
-                        <FormLabel className="font-normal">
-                          {subject.subName}
-                        </FormLabel>
+                        ))}
+                        <FormMessage />
                       </FormItem>
-                    )
-                  }}
-                />
-              ))}
-              <FormMessage />
-            </FormItem>
-          )}
-            />
+                    )}
+                  />
+                </div>
                 <FormField
           control={form.control}
           name="classesTaught"
