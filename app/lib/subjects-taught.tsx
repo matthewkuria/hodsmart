@@ -1,58 +1,72 @@
 const subTaughtData = [
     {
-        id: "101",
+        id:1,
+        subCode: "101",
         subName:"English"        
     },
     {
-        id: "102",
+         id:2,
+        subCode: "102",
         subName:"Kiswahili"        
     },
     {
-        id: "121",
+        id:3,
+        subCode: "121",
         subName:"Maths"        
     },
     {
-        id: "231",
+        id:4,
+        subCode: "231",
         subName:"Biology"        
     },
     {
-        id: "232",
+        id:5,
+        subCode: "232",
         subName:"Physics"        
     },
     {
-        id: "233",
+        id:6,
+        subCode: "233",
         subName:"Chemistry"        
     },
     {
-        id: "311",
+        id:7,
+        subCode: "311",
         subName:"CRE"        
     },
     {
-        id: "312",
+        id:8,
+        subCode: "312",
         subName:"Geography"        
     },
     {
-        id: "441",
+        id:9,
+        subCode: "441",
         subName:"Home Science"        
     },
     {
-        id: "443",
+        id:10,
+        subCode: "443",
         subName:"Agriculture"        
     },
     {
-        id: "451",
+        id:11,
+        subCode: "451",
         subName:"Computer Studies"        
     },
     {
-        id: "501",
+        id:12,
+        subCode: "501",
         subName:"French"        
     },
     {
-        id: "502",
+        id:13,
+        subCode: "502",
         subName:"German"        
     },
     {
-        id: "565",
+        id:14,
+        subCode: "565",
         subName:"Business Studies"        
     },
 ]

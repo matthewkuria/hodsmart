@@ -41,7 +41,7 @@ const addAllocation = async (collectionName:any, documentData:any) => {
 export default function AddAllocationCard() {
   const [formData, setFormData] = useState({
       teacherName: "",
-      subjects: [],
+      subjects: [''],
       classesTaught: [],
       numberOflessons: "",
 
@@ -57,15 +57,22 @@ export default function AddAllocationCard() {
     },
     })
   //  create handleChange function to collect data when there is a change
-  const handleChange = (e: any) => {    
-    const { name, value, checked } = e.target;   
-    setFormData((prevFormData) => ({
+  const handleChange = ( checked: any, id:any, subCode:any) => { 
+    console.log('Checkbox state changed:', checked);
+     console.log('Subject code:', subCode);
+     const newSelectedSubjects = checked
+      ? [...formData.subjects,id]
+      : formData.subjects.filter((value: any) => value !== id);
+      setFormData((prevFormData) => ({
       ...prevFormData,
-      [name]: value,
-      if(checked: any) {
-        subjects:[...prevFormData.subjects, value]
-      }
+      subjects: newSelectedSubjects
     }));
+    // const { name, value } = e.target;   
+    // setFormData((prevFormData) => ({
+    //   ...prevFormData,
+    //   [name]: value
+      
+    // }));
       console.log(formData)
   };
     const handleSubmit = async (e:any) => {
@@ -91,7 +98,7 @@ export default function AddAllocationCard() {
    
     return (
      <main>
-        <Form {...form} >
+        <Form {...form} >            
             <form onSubmit={handleSubmit} className="md:flex md:justify-around mt-5">
                 <div className="p-2">
                   <FormField
@@ -128,30 +135,16 @@ export default function AddAllocationCard() {
                           </FormDescription>
                         </div>
                         {subTaughtData.map((subject) => (
-                          <FormField
-                            key={subject.id}
-                            control={form.control}
-                            name="subjects"
-                            render={({ field }) => {
-                              return (
-                                <FormItem
-                                  key={subject.id}
-                                  className="flex flex-row items-start space-x-3 space-y-0"
-                                >
-                                  <FormControl>
-                                    <Checkbox 
-                                      value={field.value}  
-                                      checked={field.value?.includes(subject.id)}
-                                      onCheckedChange={handleChange}
-                                    />
-                                  </FormControl>
-                                  <FormLabel className="font-normal">
-                                    {subject.subName}
-                                  </FormLabel>
-                                </FormItem>
-                              )
-                            }}
-                          />
+                          <div key={subject.id}>
+                            <label>
+                              <input
+                                type="checkbox"
+                                checked={formData.subjects.includes(subject.subName)}
+                                onChange={(e) => handleChange(e.target.checked,subject.subName,subject.id)}
+                              />
+                              {subject.subName}
+                            </label>
+                          </div>
                         ))}
                         <FormMessage />
                       </FormItem>
