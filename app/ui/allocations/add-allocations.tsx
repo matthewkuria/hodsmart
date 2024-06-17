@@ -89,8 +89,8 @@ export default function AddAllocationCard() {
     return (
      <main>
         <Form {...form} >
-            <form onSubmit={handleSubmit} className="md:flex justify-around mt-5">
-                <div className="">
+            <form onSubmit={handleSubmit} className="md:flex md:justify-around mt-5">
+                <div className="p-2">
                   <FormField
                     control={form.control}
                     name="teacherName"
@@ -112,7 +112,7 @@ export default function AddAllocationCard() {
                     )}
                   />
                 </div>
-                <div className="">
+                <div className="p-2">
                   <FormField
                     control={form.control}
                     name="subjects"
@@ -163,86 +163,92 @@ export default function AddAllocationCard() {
                     )}
                   />
                 </div>
-                <FormField
-          control={form.control}
-          name="classesTaught"
-          render={() => (
-            <FormItem>
-              <div className="mb-4">
-                <FormLabel className="text-base">Classes</FormLabel>
-                <FormDescription>
-                  Select the classes taught.
-                </FormDescription>
-              </div>
-              {schData.map((item) => (
-                <FormField
-                  key={item.id}
-                  control={form.control}
-                  name="classesTaught"
-                  render={({ field }) => {
-                    return (
-                      <FormItem
-                        key={item.id}
-                        className="flex flex-row items-start space-x-3 space-y-0"
-                      >
-                        <FormControl>
-                          <Checkbox
-                            checked={field.value?.includes(item.id)}
-                            onCheckedChange={(checked) => {
-                              return checked
-                                ? field.onChange([...field.value, item.id])
-                                : field.onChange(
-                                    field.value?.filter(
-                                      (value) => value !== item.id
-                                    )
-                                  )
+                <div className="">
+                  <FormField
+                    control={form.control}
+                    name="classesTaught"
+                    render={() => (
+                      <FormItem>
+                        <div className="mb-4">
+                          <FormLabel className="text-base">Classes</FormLabel>
+                          <FormDescription>
+                            Select the classes taught.
+                          </FormDescription>
+                        </div>
+                        {schData.map((item) => (
+                          <FormField
+                            key={item.id}
+                            control={form.control}
+                            name="classesTaught"
+                            render={({ field }) => {
+                              return (
+                                <FormItem
+                                  key={item.id}
+                                  className="flex flex-row items-start space-x-3 space-y-0"
+                                >
+                                  <FormControl>
+                                    <Checkbox
+                                      checked={field.value?.includes(item.id)}
+                                      onCheckedChange={(checked) => {
+                                        return checked
+                                          ? field.onChange([...field.value, item.id])
+                                          : field.onChange(
+                                              field.value?.filter(
+                                                (value) => value !== item.id
+                                              )
+                                            )
+                                      }}
+                                    />
+                                  </FormControl>
+                                  <FormLabel className="font-normal">
+                                    {item.label}
+                                  </FormLabel>
+                                </FormItem>
+                              )
                             }}
                           />
-                        </FormControl>
-                        <FormLabel className="font-normal">
-                          {item.label}
-                        </FormLabel>
+                        ))}
+                        <FormMessage />
                       </FormItem>
-                    )
-                  }}
-                />
-              ))}
-              <FormMessage />
-            </FormItem>
-          )}
-            />
-        <FormField
-          control={form.control}
-          name="numberOfLessons"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Number of Lessons</FormLabel>
-              <Select                
-                onValueChange={field.onChange}
-                defaultValue={formData.numberOflessons}>
-                <FormControl>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select the number of lessons" />
-                  </SelectTrigger>
-                </FormControl>
-                <SelectContent>
-                  <SelectItem value="1">1</SelectItem>
-                  <SelectItem value="2">2</SelectItem>
-                  <SelectItem value="3">3</SelectItem>
-                  <SelectItem value="4">4</SelectItem>
-                  <SelectItem value="5">5</SelectItem>
-                  <SelectItem value="6">6</SelectItem>
-                  <SelectItem value="7">7</SelectItem>
-                  <SelectItem value="8">8</SelectItem>
-                  <SelectItem value="9">9</SelectItem>
-                  <SelectItem value="10">10</SelectItem>                  
-                </SelectContent>
-              </Select>              
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-            <Button type="submit">Allocate</Button>
+                    )}
+                  />
+                </div>
+                <div className="">
+                  <FormField
+                    control={form.control}
+                    name="numberOfLessons"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Number of Lessons</FormLabel>
+                        <Select                
+                          onValueChange={field.onChange}
+                          defaultValue={formData.numberOflessons}>
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Select the number of lessons" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="1">1</SelectItem>
+                            <SelectItem value="2">2</SelectItem>
+                            <SelectItem value="3">3</SelectItem>
+                            <SelectItem value="4">4</SelectItem>
+                            <SelectItem value="5">5</SelectItem>
+                            <SelectItem value="6">6</SelectItem>
+                            <SelectItem value="7">7</SelectItem>
+                            <SelectItem value="8">8</SelectItem>
+                            <SelectItem value="9">9</SelectItem>
+                            <SelectItem value="10">10</SelectItem>                  
+                          </SelectContent>
+                        </Select>              
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+           <div className="flex items-end justify-end">
+             <Button type="submit">Allocate</Button>
+           </div>
         </form>
         </Form>
      </main>
