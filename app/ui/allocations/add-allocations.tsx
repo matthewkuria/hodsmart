@@ -42,8 +42,8 @@ export default function AddAllocationCard() {
   const [formData, setFormData] = useState({
       teacherName: "",
       subjects: [],
-    classesTaught: [],
-    numberOflessons: "",
+      classesTaught: [],
+      numberOflessons: "",
 
   })
   const form = useForm<z.infer<typeof formSchema>>({
@@ -58,10 +58,13 @@ export default function AddAllocationCard() {
     })
   //  create handleChange function to collect data when there is a change
   const handleChange = (e: any) => {    
-    const { name, value } = e.target;  
+    const { name, value, checked } = e.target;   
     setFormData((prevFormData) => ({
       ...prevFormData,
-      [name]: value
+      [name]: value,
+      if(checked: any) {
+        subjects:[...prevFormData.subjects, value]
+      }
     }));
       console.log(formData)
   };
@@ -136,18 +139,10 @@ export default function AddAllocationCard() {
                                   className="flex flex-row items-start space-x-3 space-y-0"
                                 >
                                   <FormControl>
-                                    <Checkbox
-                                      checked={field.value?.includes(subject.subName)}
-                                      onCheckedChange={(checked) => {
-                                        console.log(field.value)
-                                        return checked
-                                          ? field.onChange([...field.value, subject.subName])
-                                          : field.onChange(
-                                              field.value?.filter(
-                                                (value) => value !== subject.id
-                                              )
-                                            )
-                                      }}
+                                    <Checkbox 
+                                      value={field.value}  
+                                      checked={field.value?.includes(subject.id)}
+                                      onCheckedChange={handleChange}
                                     />
                                   </FormControl>
                                   <FormLabel className="font-normal">
@@ -163,7 +158,7 @@ export default function AddAllocationCard() {
                     )}
                   />
                 </div>
-                <div className="">
+                <div className="p-2">
                   <FormField
                     control={form.control}
                     name="classesTaught"
@@ -213,7 +208,7 @@ export default function AddAllocationCard() {
                     )}
                   />
                 </div>
-                <div className="">
+                <div className="p-2">
                   <FormField
                     control={form.control}
                     name="numberOfLessons"
@@ -221,7 +216,7 @@ export default function AddAllocationCard() {
                       <FormItem>
                         <FormLabel>Number of Lessons</FormLabel>
                         <Select                
-                          onValueChange={field.onChange}
+                          onValueChange={handleChange}
                           defaultValue={formData.numberOflessons}>
                           <FormControl>
                             <SelectTrigger>
