@@ -1,6 +1,6 @@
 "use client"
 import { db } from "../../firebaseConfig";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, doc, setDoc } from "firebase/firestore";
 import schData from "@/app/lib/sch-classes";
 import subTaughtData from "@/app/lib/subjects-taught";
 import { Button } from "@/components/ui/button";
@@ -57,7 +57,7 @@ export default function AddAllocationCard() {
     },
     })
   //  create handleChange function to collect data when there is a change
-  const handleChange = ( checked: any, id:any, subCode:any) => { 
+  const handleChange = async( checked: any, id:any, subCode:any) => { 
     console.log('Checkbox state changed:', checked);
      console.log('Subject code:', subCode);
      const newSelectedSubjects = checked
@@ -66,7 +66,15 @@ export default function AddAllocationCard() {
       setFormData((prevFormData) => ({
       ...prevFormData,
       subjects: newSelectedSubjects
-    }));
+      }));
+     try {
+      // Assuming you're updating a document in Firestore with the newSelectedSubjects
+      const docRef = doc(db, 'collectionName', 'documentId'); // Replace with your collection and document ID
+      await setDoc(docRef, { selectedSubjects: newSelectedSubjects });
+      console.log('Document successfully updated!');
+    } catch (error) {
+      console.error('Error updating document: ', error);
+    }
     // const { name, value } = e.target;   
     // setFormData((prevFormData) => ({
     //   ...prevFormData,
