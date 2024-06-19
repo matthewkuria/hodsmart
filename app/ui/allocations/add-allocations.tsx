@@ -80,15 +80,15 @@ export default function AddAllocationCard() {
     // }));
       console.log(formData)
   };
-  const handleChangeTwo = (checked, ) => {
+  const handleChangeTwo = (checked: any,id: any,className: string ) => {
      console.log('Checkbox state changed:', checked);
-     console.log('Subject code:', subCode);
-     const newSelectedSubjects = checked
-      ? [...formData.subjects,id]
-      : formData.subjects.filter((value: any) => value !== id);
+     console.log('Class code:', className);
+     const newSelectedClasses = checked
+      ? [...formData.classesTaught,id]
+      : formData.classesTaught.filter((value: any) => value !== id);
       setFormData((prevFormData) => ({
       ...prevFormData,
-      subjects: newSelectedSubjects
+      classesTaught: newSelectedClasses
       }));
   };
  const handleInputChange = (e:any) => {
@@ -185,31 +185,19 @@ export default function AddAllocationCard() {
                             Select the classes taught.
                           </FormDescription>
                         </div>
-                        {schData.map((item) => (
-                          <FormField
-                            key={item.id}
-                            control={form.control}
-                            name="classesTaught"
-                            render={({ field }) => {
-                              return (
-                                <FormItem
-                                  key={item.id}
-                                  className="flex flex-row items-start space-x-3 space-y-0"
-                                >
-                                  <FormControl>
-                                    <Checkbox
-                                      checked={formData.classesTaught.includes(item.id)}
-                                      onChange={(e) => handleChangeTwo(e.target.checked,item.label,item.id)}                                     
-                                    />
-                                  </FormControl>
-                                  <FormLabel className="font-normal">
-                                    {item.label}
-                                  </FormLabel>
-                                </FormItem>
-                              )
-                            }}
-                          />
-                        ))}
+                        {schData.map((stream) => (
+                          <div key={stream.id}>
+                            <label>
+                              <input
+                                type="checkbox"
+                                checked={formData.classesTaught.includes(stream.className)}
+                                onChange={(e) => handleChangeTwo(e.target.checked,stream.className,stream.id)}
+                              />
+                              {stream.className}
+                            </label>
+                          </div>
+                        ))}               
+                        
                         <FormMessage />
                       </FormItem>
                     )}
