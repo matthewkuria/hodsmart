@@ -83,6 +83,9 @@ export default function AddAllocationCard() {
     // }));
       console.log(formData)
   };
+  const handleInputChange = (e:any) => {
+    
+  }
     const handleSubmit = async (e:any) => {
     e.preventDefault();
     const documentData = {

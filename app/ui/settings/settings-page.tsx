@@ -11,7 +11,7 @@ import { useForm } from "react-hook-form";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import router from "next/router";
 import { auth } from "@/app/firebaseConfig";
-import Avatar from 'react-avatar';
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
 
 
 
@@ -74,8 +74,11 @@ export default function Settings() {
   };
   return (
     <>
-        <div className="avatar-container">
-      <img src={avatar} alt="Avatar" className="bg-cover rounded-full w-40 h-40" />
+      <div className="avatar-container">
+        <Avatar>
+          <AvatarImage  src=""/>
+        </Avatar>
+      {/* <img src={avatar} alt="Avatar" className="bg-cover rounded-full w-40 h-40" /> */}
       <input type="file" accept="image/*" className="mt-3" onChange={handleAvatarChange} />
     </div>
         <Form {...form}>
