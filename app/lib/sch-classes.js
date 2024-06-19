@@ -1,27 +1,39 @@
 const schData = [
     {
-        id: "1b",
-        label: "1B"
+        
+      id: 1,
+      classCode: "1b",
+        className: "1B"
     },
      {
-        id: "1y",
-        label: "1Y"
+        
+      id:2 ,
+      classCode: "1y",
+        className: "1Y"
     },
       {
-        id: "1v",
-        label: "1V"
+        
+        id:3 ,
+        classCode: "1v",
+        className: "1V"
     },
        {
-        id: "1r",
-        label: "1R"
+        
+        id:4 ,
+        classCode: "1r",
+        className: "1R"
     },
       {
-        id: "1w",
-        label: "1W"
+        
+        id:5 ,
+        classCode: "1w",
+        className: "1W"
     },
       {
-        id: "2y",
-        label: "2Y"
+        
+        id:6 ,
+        classCode: "2y",
+        className: "2Y"
     },
     
   

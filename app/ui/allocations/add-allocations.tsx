@@ -80,6 +80,17 @@ export default function AddAllocationCard() {
     // }));
       console.log(formData)
   };
+  const handleChangeTwo = (checked, ) => {
+     console.log('Checkbox state changed:', checked);
+     console.log('Subject code:', subCode);
+     const newSelectedSubjects = checked
+      ? [...formData.subjects,id]
+      : formData.subjects.filter((value: any) => value !== id);
+      setFormData((prevFormData) => ({
+      ...prevFormData,
+      subjects: newSelectedSubjects
+      }));
+  };
  const handleInputChange = (e:any) => {
     const { name, value, type, checked } = e.target;
     setFormData((prevFormData) => ({
@@ -187,16 +198,8 @@ export default function AddAllocationCard() {
                                 >
                                   <FormControl>
                                     <Checkbox
-                                      checked={field.value?.includes(item.id)}
-                                      onCheckedChange={(checked) => {
-                                        return checked
-                                          ? field.onChange([...field.value, item.id])
-                                          : field.onChange(
-                                              field.value?.filter(
-                                                (value) => value !== item.id
-                                              )
-                                            )
-                                      }}
+                                      checked={formData.classesTaught.includes(item.id)}
+                                      onChange={(e) => handleChangeTwo(e.target.checked,item.label,item.id)}                                     
                                     />
                                   </FormControl>
                                   <FormLabel className="font-normal">
