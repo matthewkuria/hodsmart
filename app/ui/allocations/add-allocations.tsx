@@ -11,7 +11,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Select, SelectContent, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const formSchema = z.object({
   teacherName: z.string().min(2, {
@@ -43,7 +43,7 @@ export default function AddAllocationCard() {
       teacherName: "",
       subjects: [],
       classesTaught: [],
-      numberOflessons: "",
+      numberOflessons: 2,
 
   })
   const form = useForm<z.infer<typeof formSchema>>({
@@ -77,10 +77,10 @@ export default function AddAllocationCard() {
     }
     //
       
-    // }));
-      console.log(formData)
+    // // }));
+    //   console.log(formData)
   };
-  const handleChangeTwo = (checked: any,id: any,className: string ) => {
+  const handleChangeTwo = (checked: any,id: number,className:string ) => {
      console.log('Checkbox state changed:', checked);
      console.log('Class code:', className);
      const newSelectedClasses = checked
@@ -97,7 +97,15 @@ export default function AddAllocationCard() {
       ...prevFormData,
       [name]: type === 'checkbox' ? checked : value
     }));
+   console.log("changed to:",value)
   };
+  const handleSelectChange = (e: any) => {
+    const { name, value } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }))
+  }
     const handleSubmit = async (e:any) => {
     e.preventDefault();
     const documentData = {
@@ -203,38 +211,28 @@ export default function AddAllocationCard() {
                     )}
                   />
                 </div>
-                <div className="p-2">
-                  <FormField
-                    control={form.control}
-                    name="numberOfLessons"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Number of Lessons</FormLabel>
-                        <Select                
-                          onValueChange={handleInputChange}
-                          defaultValue={formData.numberOflessons}>
-                          <FormControl>
-                            <SelectTrigger>
-                              <SelectValue placeholder="Select the number of lessons" />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent>
-                            <SelectItem value="1">1</SelectItem>
-                            <SelectItem value="2">2</SelectItem>
-                            <SelectItem value="3">3</SelectItem>
-                            <SelectItem value="4">4</SelectItem>
-                            <SelectItem value="5">5</SelectItem>
-                            <SelectItem value="6">6</SelectItem>
-                            <SelectItem value="7">7</SelectItem>
-                            <SelectItem value="8">8</SelectItem>
-                            <SelectItem value="9">9</SelectItem>
-                            <SelectItem value="10">10</SelectItem>                  
-                          </SelectContent>
-                        </Select>              
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+                <div className="p-2">                     
+                    <FormLabel>Number of Lessons</FormLabel>
+                    <select  
+                      id="numberOfLessons" 
+                      name="numberOfLessons"  
+                      onChange={handleSelectChange}
+                      value={formData.numberOflessons}
+                    >                      
+                        <option value="">--Select the number of lessons--</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>                      
+                    </select>              
+                <FormMessage />                             
+                  
                 </div>
            <div className="flex items-end justify-end">
              <Button type="submit">Allocate</Button>
