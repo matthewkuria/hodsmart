@@ -41,7 +41,7 @@ const addAllocation = async (collectionName:any, documentData:any) => {
 export default function AddAllocationCard() {
   const [formData, setFormData] = useState({
       teacherName: "",
-      subjects: [''],
+      subjects: [],
       classesTaught: [],
       numberOflessons: "",
 
@@ -75,17 +75,18 @@ export default function AddAllocationCard() {
     } catch (error) {
       console.error('Error updating document: ', error);
     }
-    // const { name, value } = e.target;   
-    // setFormData((prevFormData) => ({
-    //   ...prevFormData,
-    //   [name]: value
+    //
       
     // }));
       console.log(formData)
   };
-  const handleInputChange = (e:any) => {
-    
-  }
+ const handleInputChange = (e:any) => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: type === 'checkbox' ? checked : value
+    }));
+  };
     const handleSubmit = async (e:any) => {
     e.preventDefault();
     const documentData = {
@@ -104,8 +105,7 @@ export default function AddAllocationCard() {
       subjects: [],
       numberOflessons:""
     });
-  };
-    
+  }; 
    
     return (
      <main>
@@ -123,7 +123,7 @@ export default function AddAllocationCard() {
                             name="teacherName"
                             id="teacherName"
                             value={formData.teacherName}
-                            onChange={handleChange}
+                            onChange={handleInputChange}
                             required
                             className="md: mx-5"
                           />                            
@@ -220,7 +220,7 @@ export default function AddAllocationCard() {
                       <FormItem>
                         <FormLabel>Number of Lessons</FormLabel>
                         <Select                
-                          onValueChange={handleChange}
+                          onValueChange={handleInputChange}
                           defaultValue={formData.numberOflessons}>
                           <FormControl>
                             <SelectTrigger>
