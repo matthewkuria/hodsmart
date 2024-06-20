@@ -23,8 +23,8 @@ const formSchema = z.object({
     classesTaught: z.array(z.string()).refine((value) => value.some((item) => item), {
     message: "You have to select at least one class.",
   }),
-  numberOfLessons: z.string({
-    required_error: "Please select the number of lessons.",
+  numberOfLessons: z.string().min(1,{
+    message: "Please select the number of lessons.",
     
   })
 })
@@ -196,7 +196,7 @@ export default function AddAllocationCard() {
                         {schData.map((stream) => (
                           <div key={stream.id}>
                             <label>
-                              <input
+                              <input                               
                                 type="checkbox"
                                 checked={formData.classesTaught.includes(stream.className)}
                                 onChange={(e) => handleChangeTwo(e.target.checked,stream.className,stream.id)}
@@ -218,6 +218,7 @@ export default function AddAllocationCard() {
                       name="numberOfLessons"  
                       onChange={handleSelectChange}
                       value={formData.numberOfLessons}
+                      required
                     >                      
                         <option value="0">--Select the number of lessons--</option>
                         <option value="1">1</option>
@@ -231,6 +232,7 @@ export default function AddAllocationCard() {
                         <option value="9">9</option>
                         <option value="10">10</option>                      
                     </select> 
+                    <FormMessage />
                 </div>
            <div className="flex items-end justify-end">
              <Button type="submit">Allocate</Button>
