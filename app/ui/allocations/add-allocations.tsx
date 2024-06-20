@@ -43,7 +43,7 @@ export default function AddAllocationCard() {
       teacherName: "",
       subjects: [],
       classesTaught: [],
-      numberOflessons: 2,
+      numberOflessons: "",
 
   })
   const form = useForm<z.infer<typeof formSchema>>({
