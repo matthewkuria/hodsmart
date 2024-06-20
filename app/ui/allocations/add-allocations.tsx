@@ -99,13 +99,13 @@ export default function AddAllocationCard() {
     }));
    console.log("changed to:",value)
   };
-  const handleSelectChange = (e: any) => {
-    const { name, value } = e.target;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: value,
-    }))
-  }
+  const handleSelectChange = (event:any) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,  // dynamically update the form field based on name
+    });
+  };
     const handleSubmit = async (e:any) => {
     e.preventDefault();
     const documentData = {
@@ -212,14 +212,14 @@ export default function AddAllocationCard() {
                   />
                 </div>
                 <div className="p-2">                     
-                    <FormLabel>Number of Lessons</FormLabel>
+                    <label htmlFor="numberOfLessons">Number of Lessons</label>
                     <select  
                       id="numberOfLessons" 
                       name="numberOfLessons"  
                       onChange={handleSelectChange}
                       value={formData.numberOflessons}
                     >                      
-                        <option value="">--Select the number of lessons--</option>
+                        <option value="0">--Select the number of lessons--</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -230,9 +230,7 @@ export default function AddAllocationCard() {
                         <option value="8">8</option>
                         <option value="9">9</option>
                         <option value="10">10</option>                      
-                    </select>              
-                <FormMessage />                             
-                  
+                    </select> 
                 </div>
            <div className="flex items-end justify-end">
              <Button type="submit">Allocate</Button>
