@@ -45,7 +45,7 @@ export default function AddAllocationCard() {
       classesTaught: [],
       numberOfLessons: "",
 
-  })
+  } as any)
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -56,44 +56,30 @@ export default function AddAllocationCard() {
 
     },
     })
-  //  create handleChange function to collect data when there is a change
   const handleChange = async( checked: any, id:any, subCode:any) => { 
     console.log('Checkbox state changed:', checked);
      console.log('Subject code:', subCode);
      const newSelectedSubjects = checked
       ? [...formData.subjects,id]
       : formData.subjects.filter((value: any) => value !== id);
-      setFormData((prevFormData) => ({
+      setFormData((prevFormData: any) => ({
       ...prevFormData,
       subjects: newSelectedSubjects
       }));
-     try {
-      // Assuming you're updating a document in Firestore with the newSelectedSubjects
-      const docRef = doc(db, 'collectionName', 'documentId'); // Replace with your collection and document ID
-      await setDoc(docRef, { selectedSubjects: newSelectedSubjects });
-      console.log('Document successfully updated!');
-    } catch (error) {
-      console.error('Error updating document: ', error);
-    }
-    //
-      
-    // // }));
-    //   console.log(formData)
+     
   };
-  const handleChangeTwo = (checked: any,id: number,className:string ) => {
-     console.log('Checkbox state changed:', checked);
-     console.log('Class code:', className);
+  const handleChangeTwo = (checked: any,id: number, className: string ) => {
      const newSelectedClasses = checked
       ? [...formData.classesTaught,id]
       : formData.classesTaught.filter((value: any) => value !== id);
-      setFormData((prevFormData) => ({
+      setFormData((prevFormData: any) => ({
       ...prevFormData,
       classesTaught: newSelectedClasses
       }));
   };
  const handleInputChange = (e:any) => {
     const { name, value, type, checked } = e.target;
-    setFormData((prevFormData) => ({
+    setFormData((prevFormData: any) => ({
       ...prevFormData,
       [name]: type === 'checkbox' ? checked : value
     }));
@@ -103,7 +89,7 @@ export default function AddAllocationCard() {
     const { name, value } = event.target;
     setFormData({
       ...formData,
-      [name]: value,  // dynamically update the form field based on name
+      [name]: value,  
     });
   };
     const handleSubmit = async (e:any) => {
