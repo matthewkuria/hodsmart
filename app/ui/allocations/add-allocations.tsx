@@ -43,7 +43,7 @@ export default function AddAllocationCard() {
       teacherName: "",
       subjects: [],
       classesTaught: [],
-      numberOflessons: "",
+      numberOfLessons: "",
 
   })
   const form = useForm<z.infer<typeof formSchema>>({
@@ -112,7 +112,7 @@ export default function AddAllocationCard() {
        teacherName: formData.teacherName,
       classesTaught: formData.classesTaught,
       subjects: formData.subjects,
-      numberOflessons: formData.numberOflessons
+      numberOflessons: formData.numberOfLessons
     };
     const collectionName = 'allocations';  // Specify your collection name here
      await addAllocation(collectionName, documentData);    
@@ -122,7 +122,7 @@ export default function AddAllocationCard() {
       teacherName: "",
       classesTaught: [],
       subjects: [],
-      numberOflessons:""
+      numberOfLessons:""
     });
   }; 
    
@@ -217,7 +217,7 @@ export default function AddAllocationCard() {
                       id="numberOfLessons" 
                       name="numberOfLessons"  
                       onChange={handleSelectChange}
-                      value={formData.numberOflessons}
+                      value={formData.numberOfLessons}
                     >                      
                         <option value="0">--Select the number of lessons--</option>
                         <option value="1">1</option>
