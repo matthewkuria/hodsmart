@@ -1,10 +1,10 @@
 "use client"
 import withAuth from "@/app/lib/withAuth";
-import AddAllocationCard from "@/app/ui/allocations/add-allocations";
+import AllocationsDataTable from "@/app/ui/allocations-table";
 
  const Page =() => {
   return (
-      <AddAllocationCard />
+     <AllocationsDataTable />
     )
   }
 export default withAuth(Page);
