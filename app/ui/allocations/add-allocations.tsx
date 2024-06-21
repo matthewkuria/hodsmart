@@ -185,7 +185,7 @@ export default function AddAllocationCard() {
                               <input                               
                                 type="checkbox"
                                 checked={formData.classesTaught.includes(stream.className)}
-                                onChange={(e) => handleChangeTwo(e.target.checked,stream.className,stream.id)}
+                                onChange={(e) => handleChangeTwo(e.target.checked,stream.id,stream.className)}
                               />
                               {stream.className}
                             </label>
