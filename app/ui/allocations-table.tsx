@@ -51,7 +51,7 @@ export type Teacher = {
   gender:string
 }
 async function deleteTeacher(id: string) {
-  const docRef = doc(db, "teachers", id)
+  const docRef = doc(db, "allocations", id)
   await deleteDoc(docRef)
   alert("The teacher record deleted!")
 }
