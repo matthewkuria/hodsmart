@@ -107,10 +107,10 @@ export const columns: ColumnDef<Allocation>[] = [
     
   },
    {
-    accessorKey: "numberOfLessons",
+    accessorKey: "numberOflessons",
     header: "Number of Lessons",
     cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("numberOfLessons")}</div>
+      <div className="capitalize">{row.getValue("numberOflessons")}</div>
     ),
   },
   {
@@ -147,21 +147,8 @@ export const columns: ColumnDef<Allocation>[] = [
 ]
 
 export default function AllocationsDataTable() {
-   const { data, loading } =useFetchAllocData();
- 
-
-// if (loading) {
-//     return (
-//       <div className="flex items-center justify-between p-4">
-//         <div className="p-1 flex">
-//           <SkeletonCard />
-//           <SkeletonCard />
-//           <SkeletonCard />          
-//           <SkeletonCard />          
-//         </div>
-//       </div>
-//     );
-//   }
+  const { data, loading } = useFetchAllocData();
+  // console.log(data)
   const [sorting, setSorting] = React.useState<SortingState>([])
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([])
   const [columnVisibility, setColumnVisibility] =
@@ -191,10 +178,10 @@ export default function AllocationsDataTable() {
     <div className="w-full">
       <div className="flex items-center py-4">
         <Input
-          placeholder="Filter Full Name..."
-          value={(table.getColumn("fullName")?.getFilterValue() as string) ?? ""}
+          placeholder="Search by Full Name..."
+          value={(table.getColumn("teacherName")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
-            table.getColumn("fullName")?.setFilterValue(event.target.value)
+            table.getColumn("teacherName")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />
