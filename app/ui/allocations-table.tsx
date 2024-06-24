@@ -2,7 +2,7 @@
 import { db } from "@/app/firebaseConfig"
 import { doc, deleteDoc } from "firebase/firestore";
 import Link from "next/link"
-import useFetchData from "@/app/lib/data"
+import useFetchAllocData from "@/app/lib/allocation-data"
 import { SkeletonCard } from "./skeletons/loadingTeacherSkeleton"
 
 import * as React from "react"
@@ -153,7 +153,7 @@ export const columns: ColumnDef<Teacher>[] = [
 ]
 
 export default function AllocationsDataTable() {
-   const { data, loading } = useFetchData();
+   const { data, loading } =useFetchAllocData();
  
 
 // if (loading) {
