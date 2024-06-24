@@ -79,7 +79,7 @@ export const columns: ColumnDef<Allocation>[] = [
     enableHiding: false,
   },    
   {
-    accessorKey: "fullName",
+    accessorKey: "teacherName",
     header: ({ column }) => {
       return (
         <Button
@@ -91,26 +91,26 @@ export const columns: ColumnDef<Allocation>[] = [
         </Button>
       )
     },
-    cell: ({ row }) => <div className="uppercase  font-medium">{row.getValue("fullName")}</div>,
-  },
-  {
-    accessorKey: "tscNumber",
-    header: "Subjects Taught",
-    cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("tscNumber")}</div>
-    ),
+    cell: ({ row }) => <div className="uppercase  font-medium">{row.getValue("teacherName")}</div>,
   },
   {
     accessorKey: "subjects",
+    header: "Subjects Taught",
+    cell: ({ row }) => (
+      <div className="capitalize">{row.getValue("subjects")}</div>
+    ),
+  },
+  {
+    accessorKey: "classesTaught",
     header: () => <div className="m-1">Classes</div>,
-    cell: ({ row }) =><div className="uppercase mr-0"> {row.getValue("subjects")}</div>,   
+    cell: ({ row }) =><div className="uppercase mr-0"> {row.getValue("classesTaught")}</div>,   
     
   },
    {
-    accessorKey: "gender",
+    accessorKey: "numberOfLessons",
     header: "Number of Lessons",
     cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("gender")}</div>
+      <div className="capitalize">{row.getValue("numberOfLessons")}</div>
     ),
   },
   {
@@ -128,12 +128,7 @@ export const columns: ColumnDef<Allocation>[] = [
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(teacher.id)}
-            >
-              Copy TSC Number
-            </DropdownMenuItem>
+            <DropdownMenuLabel>Actions</DropdownMenuLabel>           
             <DropdownMenuSeparator />
             <DropdownMenuItem
               className="text-blue-400"
@@ -142,9 +137,8 @@ export const columns: ColumnDef<Allocation>[] = [
             <DropdownMenuItem
               className="text-red-500"
               onClick={()=>deleteAllocation(teacher.id)}
-            >Delete Teacher
+            >Delete Allocation
             </DropdownMenuItem>
-            <DropdownMenuItem>View Subject allocations</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       )
