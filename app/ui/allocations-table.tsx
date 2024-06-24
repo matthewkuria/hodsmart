@@ -43,19 +43,19 @@ import {
 
 // const data:Teacher[] = useFetchData();
 
-export type Teacher = {
+export type Allocation = {
   id: string
-  tscNumber: number 
-  fullName: string
-  subjects: string
-  gender:string
+  teacherName: string
+  subjects: []
+  classesTaught: []
+  numberOfLessons: string
 }
-async function deleteTeacher(id: string) {
+async function deleteAllocation(id: string) {
   const docRef = doc(db, "allocations", id)
   await deleteDoc(docRef)
   alert("The teacher record deleted!")
 }
-export const columns: ColumnDef<Teacher>[] = [
+export const columns: ColumnDef<Allocation>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -141,7 +141,7 @@ export const columns: ColumnDef<Teacher>[] = [
             </DropdownMenuItem>
             <DropdownMenuItem
               className="text-red-500"
-              onClick={()=>deleteTeacher(teacher.id)}
+              onClick={()=>deleteAllocation(teacher.id)}
             >Delete Teacher
             </DropdownMenuItem>
             <DropdownMenuItem>View Subject allocations</DropdownMenuItem>
