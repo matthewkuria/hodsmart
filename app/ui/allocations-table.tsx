@@ -148,7 +148,8 @@ export const columns: ColumnDef<Allocation>[] = [
 
 export default function AllocationsDataTable() {
   const { data, loading } = useFetchAllocData();
-  // console.log(data)
+  // const classesTaught = data.classesTaught.join("/");
+  // console.log(classesTaught)
   const [sorting, setSorting] = React.useState<SortingState>([])
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([])
   const [columnVisibility, setColumnVisibility] =
