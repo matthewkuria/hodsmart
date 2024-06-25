@@ -67,10 +67,10 @@ export default function AddAllocationCard() {
       }));
      
   };
-  const handleChangeTwo = (checked: any,id: any, className: string ) => {
+  const handleChangeTwo = (checked: any, id: any, className: string ) => {
      const newSelectedClasses = checked
       ? [...formData.classesTaught,className]
-      : formData.classesTaught.filter((value: any) => value !== id);
+      : formData.classesTaught.filter((value: any) => value !== className);
       setFormData((prevFormData: any) => ({
       ...prevFormData,
       classesTaught: newSelectedClasses
