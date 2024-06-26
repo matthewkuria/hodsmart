@@ -62,12 +62,12 @@ export default function Settings() {
         return 'An error occurred. Please try again.';
     }
   };
- const handleAvatarChange = (event:any) => {
+   const handleAvatarChange = (event:any) => {
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setAvatar("");
+        setAvatar(reader.result);
       };
       reader.readAsDataURL(file);
     }
