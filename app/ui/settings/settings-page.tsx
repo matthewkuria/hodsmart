@@ -17,6 +17,7 @@ import useAuth from "@/app/lib/useAuth";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { doc, updateDoc } from "firebase/firestore";
 import { Alert } from "@/components/ui/alert";
+import Loading from "@/app/dashboard/loading";
 
 interface UserData{
   avatar: null | string;
@@ -126,6 +127,9 @@ export default function Settings() {
       reader.readAsDataURL(file);
     }
   };
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <>
       <div className="avatar-container">        
