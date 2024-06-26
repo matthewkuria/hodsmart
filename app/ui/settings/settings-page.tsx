@@ -12,8 +12,12 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import router from "next/router";
 import { auth } from "@/app/firebaseConfig";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import internal from "stream";
 
-
+interface UserData{
+  avatar: null | string;
+  src: string;
+}
 
 const formSchema = z.object({
     emailAddress: z.string().email(),
@@ -21,7 +25,7 @@ const formSchema = z.object({
     displayName: z.string().min(3)
   })
 export default function Settings() {
-  const [avatar, setAvatar] = useState('https://via.placeholder.com/150');
+  const [avatar, setAvatar] = useState<UserData | any >('https://via.placeholder.com/150');
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [displayName, setDisplayName] = useState("");
@@ -74,11 +78,8 @@ export default function Settings() {
   };
   return (
     <>
-      <div className="avatar-container">
-        <Avatar>
-          <AvatarImage  src=""/>
-        </Avatar>
-      {/* <img src={avatar} alt="Avatar" className="bg-cover rounded-full w-40 h-40" /> */}
+      <div className="avatar-container">        
+       <img src={avatar} alt="Avatar" className="bg-cover rounded-full w-40 h-40" />
       <input type="file" accept="image/*" className="mt-3" onChange={handleAvatarChange} />
     </div>
         <Form {...form}>
