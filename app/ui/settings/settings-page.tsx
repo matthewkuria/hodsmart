@@ -1,4 +1,5 @@
 "use client";
+import BeatLoader from "react-spinners/BeatLoader";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import error from "next/error";
@@ -128,7 +129,7 @@ export default function Settings() {
     }
   };
   if (loading) {
-    return <Loading />;
+    return <BeatLoader color="#0d55ed" />;
   }
   return (
     <>
