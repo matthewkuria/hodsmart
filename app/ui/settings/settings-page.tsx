@@ -131,8 +131,7 @@ export default function Settings() {
       <div className="avatar-container">        
        <img src={profilePic} alt="Avatar" className="bg-cover rounded-full w-40 h-40" />
       <input type="file" accept="image/*" className="mt-3" onChange={handleAvatarChange} />
-      </div>
-      {error && <Alert>{error}</Alert>}
+      </div>      
       {success && <Alert>{success}</Alert>}
         <Form {...form}>
             {error && <div className="text-red-500">{error }</div >}
