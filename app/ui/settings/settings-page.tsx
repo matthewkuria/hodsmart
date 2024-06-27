@@ -2,7 +2,6 @@
 import BeatLoader from "react-spinners/BeatLoader";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import error from "next/error";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { lusitana } from "../fonts";
@@ -16,7 +15,7 @@ import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import internal from "stream";
 import useAuth from "@/app/lib/useAuth";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { doc, updateDoc } from "firebase/firestore";
+import { doc, updateDoc, getDoc } from "firebase/firestore";
 import { Alert } from "@/components/ui/alert";
 import Loading from "@/app/dashboard/loading";
 
@@ -31,13 +30,14 @@ const formSchema = z.object({
     displayName: z.string().min(3)
   })
 export default function Settings() {
-  const [profilePic, setProfilePic] = useState<UserData | any >('https://via.placeholder.com/150');
+  const [profilePic, setProfilePic] = useState<UserData | any>('https://via.placeholder.com/150');
+  const [profilePicURL, setProfilePicURL] = useState('');
   const user: any = useAuth();
   // const [profilePic, setProfilePic] = useState(null);
    const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState('');
   const [displayName, setDisplayName] = useState("");
   const [error, setError] = useState("")
   const form = useForm<z.infer<typeof formSchema>>({
@@ -53,7 +53,23 @@ export default function Settings() {
     if (user) {
       setDisplayName(user.displayName || '');
       setEmail(user.email || '');
-      console.log(user.photoURL)
+      console.log(user)
+      const fetchUserData = async () => {
+        try {
+          const userDocRef = doc(db, 'users', user.uid);
+          const userDoc = await getDoc(userDocRef);
+
+          if (userDoc.exists()) {
+            const userData = userDoc.data();
+            setDisplayName(userData.displayName || '');
+            setEmail(userData.email || '');
+            setProfilePicURL(userData.photoURL || '');
+          }
+        } catch (error) {
+          console.error('Error fetching user data:', error);
+        }
+      };
+      fetchUserData();
     }
   }, [user]);
   const handleProfileUpdate = async (event:any) => {
@@ -90,22 +106,7 @@ export default function Settings() {
     } finally {
       setLoading(false);
     }
-  };
-  // const handleSubmit = async(values: z.infer<typeof formSchema>) => {
-  //   try {
-  //     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-  //      await updateProfile(userCredential.user, { displayName });
-  //     // console.log("User signed in:", userCredential.user);
-  //     console.log("Sign Up successful")
-  //     router.push("/login"); // Redirect to login
-  //   } catch (error: any) {
-  //     setError(getErrorMessage(error.code))
-  //     console.error("Error signing in:",error.code);
-  //   }    
-  //   console.log(values) 
-    
-  // }
-   // Function to map Firebase error codes to user-friendly messages
+  }; 
   const getErrorMessage = (code: any) => {
     switch (code) {
       case 'auth/email-already-in-use':
@@ -152,7 +153,7 @@ export default function Settings() {
                     <FormLabel>User Name</FormLabel>
                     <FormControl>
                       <Input placeholder="Display Name"
-                        value={field.value}  
+                        value={displayName}  
                         onChange={(e) => {
                           // call field.onchange handler
                           field.onChange(e);
@@ -172,7 +173,7 @@ export default function Settings() {
                     <FormLabel>Email Address</FormLabel>
                     <FormControl>
                       <Input placeholder="Email Address"
-                        value={field.value}  
+                        value={email}  
                         onChange={(e) => {
                           // call field.onchange handler
                           field.onChange(e);
@@ -192,7 +193,7 @@ export default function Settings() {
                     <FormLabel>PassWord</FormLabel>
                         <FormControl>
                     <Input type="password" placeholder="password"
-                      value={field.value} 
+                      value={password} 
                       onChange={(e) => {
                         field.onChange(e);
                         setPassword(e.target.value)
