@@ -18,6 +18,7 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { doc, updateDoc, getDoc } from "firebase/firestore";
 import { Alert } from "@/components/ui/alert";
 import Loading from "@/app/dashboard/loading";
+import withAuth from "@/app/lib/withAuth";
 
 interface UserData{
   avatar: null | string;
@@ -29,27 +30,26 @@ const formSchema = z.object({
     password: z.string().min(4).max(16),
     displayName: z.string().min(3)
   })
-export default function Settings() {
+const Settings = () => {
   const [profilePic, setProfilePic] = useState<UserData | any>('https://via.placeholder.com/150');
   const [profilePicURL, setProfilePicURL] = useState('');
   const user: any = useAuth();
-  // const [profilePic, setProfilePic] = useState(null);
-   const [success, setSuccess] = useState('');
+  const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState('');
   const [displayName, setDisplayName] = useState("");
   const [error, setError] = useState("")
   const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
-        defaultValues: {
-          emailAddress: "",
-            password: "",
-            displayName: ""
-        },
-      })
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      emailAddress: "",
+      password: "",
+      displayName: ""
+    },
+  })
   //  Define a submit handler.
-    useEffect(() => {
+  useEffect(() => {
     if (user) {
       setDisplayName(user.displayName || '');
       setEmail(user.email || '');
@@ -72,7 +72,7 @@ export default function Settings() {
       fetchUserData();
     }
   }, [user]);
-  const handleProfileUpdate = async (event:any) => {
+  const handleProfileUpdate = async (event: any) => {
     event.preventDefault();
     setError('');
     setSuccess('');
@@ -106,7 +106,7 @@ export default function Settings() {
     } finally {
       setLoading(false);
     }
-  }; 
+  };
   const getErrorMessage = (code: any) => {
     switch (code) {
       case 'auth/email-already-in-use':
@@ -119,7 +119,7 @@ export default function Settings() {
         return 'An error occurred. Please try again.';
     }
   };
-   const handleAvatarChange = (event:any) => {  
+  const handleAvatarChange = (event: any) => {
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
@@ -134,81 +134,83 @@ export default function Settings() {
   }
   return (
     <>
-      <div className="avatar-container">        
-       <img src={profilePic} alt="Avatar" className="bg-cover rounded-full w-40 h-40" />
-      <input type="file" accept="image/*" className="mt-3" onChange={handleAvatarChange} />
-      </div>      
+      <div className="avatar-container">
+        {profilePic && <img src={profilePic} alt="Profile Picture" style={{ width: '100px', height: '100px', borderRadius: '50%' }} />}
+        <input type="file" accept="image/*" className="mt-3" onChange={handleAvatarChange} />
+      </div>
       {success && <Alert>{success}</Alert>}
-        <Form {...form}>
-            {error && <div className="text-red-500">{error }</div >}
-            <form onSubmit={handleProfileUpdate} className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
-            <h1 className={`${lusitana.className} mb-3 text-2xl`}>
-               Update Profile details
-            </h1>
-              <FormField
-                control={form.control}
-                name="displayName"
-                render={({ field }) => (               
-                  <FormItem>
-                    <FormLabel>User Name</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Display Name"
-                        value={displayName}  
-                        onChange={(e) => {
-                          // call field.onchange handler
-                          field.onChange(e);
-                          setDisplayName(e.target.value)
-                        }}
-                      />
-                    </FormControl>                                 
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="emailAddress"
-                render={({ field }) => (               
-                  <FormItem>
-                    <FormLabel>Email Address</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Email Address"
-                        value={email}  
-                        onChange={(e) => {
-                          // call field.onchange handler
-                          field.onChange(e);
-                          setEmail(e.target.value)
-                        }}
-                      />
-                    </FormControl>                                 
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-              control={form.control}
-              name="password"
-              render={({field})=>(
-                <FormItem>
-                    <FormLabel>PassWord</FormLabel>
-                        <FormControl>
-                    <Input type="password" placeholder="password"
-                      value={password} 
-                      onChange={(e) => {
-                        field.onChange(e);
-                        setPassword(e.target.value)
-                      }}
-                    />
-                        </FormControl> 
-                    <FormMessage />
-                </FormItem>
-              )}
-                />
-              <div className="mt-5 flex items-center justify-end">              
-                {loading ? <Button disabled>Updating...</Button> : <Button type="submit">Update Profile</Button>}                
-              </div>
-            </form>
+      <Form {...form}>
+        {error && <div className="text-red-500">{error}</div >}
+        <form onSubmit={handleProfileUpdate} className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
+          <h1 className={`${lusitana.className} mb-3 text-2xl`}>
+            Update Profile details
+          </h1>
+          <FormField
+            control={form.control}
+            name="displayName"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>User Name</FormLabel>
+                <FormControl>
+                  <Input placeholder="Display Name"
+                    value={displayName}
+                    onChange={(e) => {
+                      // call field.onchange handler
+                      field.onChange(e);
+                      setDisplayName(e.target.value)
+                    }}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="emailAddress"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Email Address</FormLabel>
+                <FormControl>
+                  <Input placeholder="Email Address"
+                    value={email}
+                    onChange={(e) => {
+                      // call field.onchange handler
+                      field.onChange(e);
+                      setEmail(e.target.value)
+                    }}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>PassWord</FormLabel>
+                <FormControl>
+                  <Input type="password" placeholder="password"
+                    value={password}
+                    onChange={(e) => {
+                      field.onChange(e);
+                      setPassword(e.target.value)
+                    }}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <div className="mt-5 flex items-center justify-end">
+            {loading ? <Button disabled>Updating...</Button> : <Button type="submit">Update Profile</Button>}
+          </div>
+        </form>
       </Form>
-      </>
-    )
-}
+    </>
+  )
+};
+Settings.displayName = 'Settings';
+export default withAuth(Settings);
