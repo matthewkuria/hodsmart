@@ -9,7 +9,7 @@ import { lusitana } from "../fonts";
 import { Input } from "@/components/ui/input";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile, updateEmail, updatePassword } from "firebase/auth";
 import router from "next/router";
 import { auth, db, storage } from "@/app/firebaseConfig";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
