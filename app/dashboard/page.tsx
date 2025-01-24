@@ -1,4 +1,5 @@
 "use client"
+import React from "react";
 
 import { Button } from "@/components/ui/button"
 import { auth } from "../firebaseConfig"
@@ -64,9 +65,9 @@ const Page = () => {
         </div>
        }
       </div>) : (
-         <>
-                        <SkeletonCard />
-                    </>
+          <>
+            <SkeletonCard />
+          </>
       )
       }
      
