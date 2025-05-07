@@ -26,17 +26,15 @@ export default function SearchBar() {
 //     setResults(searchResults);
 //   };
     return (
-        <main className="flex items-center  bg-slate-100 h-20 rounded-md">
-        <div className=" hidden md:block px-5">
-           <h1 className="text-blue-500 text-3xl">Overview</h1>            
-        </div>
-        <div className="flex items-center w-full md:w-1/2 gap-2">
+        <main className="flex items-center">
+        <div className="flex items-center w-full  gap-2">
             <MagnifyingGlassIcon className='size-6 text-slate-500'/>
             <Input 
              placeholder="Search for a teacher or subjects"
              type="text"
               // value={searchField}
-              // onChange={(e) => setSearchField(e.target.value)}
+            // onChange={(e) => setSearchField(e.target.value)}
+            className='w-full h-10 rounded-md border-none bg-slate-100 focus:outline-none focus:ring-0 focus:border-none'
              />
         </div> 
         {/* <div>
