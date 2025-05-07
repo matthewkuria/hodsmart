@@ -3,6 +3,8 @@ import { lusitana } from '@/app/ui/fonts';
 import HodSmartLogo from "./ui/HodSmartLogo";
 import Link from "next/link";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
+import smartTeacherDesktop from "../public/teacher-image-desktop.png";
+import smartTeacherMobile from "../public/teacher-image-mobile.png";
 
 export default function Home() {
   return (
@@ -31,14 +33,14 @@ export default function Home() {
         </div>
         <div className="flex items-center justify-center p-6 md:w-3/5 md:px-28 md:py-12">
             <Image
-              src="/smart-teacher-desktop.jfif"
+              src={smartTeacherDesktop}
               width={1000}
               height={760}
               alt="Smart Hod image for the desktop"
               className="hidden md:block rounded-lg"
              />
              <Image
-              src="/smart-teacher-mobile.jfif"
+              src={smartTeacherMobile}
               width={560}
               height={620}
               alt="Smart Hod image for the mobile"
